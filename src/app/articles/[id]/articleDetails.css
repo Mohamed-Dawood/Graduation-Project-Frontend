@@ -1,54 +1,71 @@
-.contentDetails {
-  .article-card {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    margin-top: 2.5rem;
-  }
-  .articleDetails,
-  .authorAndRef {
+.detail {
+  .articleDetails {
     display: flex;
-    margin: 1.875rem 5rem;
+    gap: 20px;
+    margin-top: 22px;
     > div {
       flex-basis: 50%;
-    }
-    gap: 3.125rem;
-    h4 {
-      font-size: 1.5625rem;
-      font-weight: bold;
-      color: var(--main-color);
-    }
-  }
-  .articleDetails {
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 1.125rem;
+      padding: 1.875rem 2.5rem;
+      h4 {
+        font-weight: bold;
+        color: var(--main-color);
+        font-size: 25px;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
     }
   }
   .authorAndRef {
-    .author {
-      width: 50%;
-      p {
-        font-size: 1.375rem;
+    display: flex;
+    padding: 1.875rem 2.5rem;
+    > div {
+      flex-basis: 50%;
+      &:last-child {
+        padding-left: 2.5rem;
       }
     }
   }
 }
 @media (max-width: 768px) {
-  .contentDetails {
+  .detail {
     .articleDetails {
       flex-direction: column;
-      margin: 0.625rem;
+      > div {
+        padding: 10px;
+      }
     }
   }
-}
-.content {
-  margin: 1.25rem 2.5rem;
-  font-size: 1.25rem;
+  .authorAndRef {
+    padding: 10px !important;
+    flex-direction: column;
+    > div {
+      &:last-child {
+        padding: 0 !important;
+      }
+    }
+    .ref {
+      padding-right: 1.5625rem;
+    }
+  }
+  .cardContent {
+    flex-direction: column !important;
+    margin: auto;
+    padding-bottom: 2.5rem !important;
+    img {
+      width: 50%;
+      height: 50%;
+    }
+    .cardTitle {
+      margin-top: 15px;
+    }
+    .publishedDate {
+      p {
+        width: 100%;
+        text-align: right !important;
+      }
+    }
+  }
 }

@@ -1,0 +1,37 @@
+.content {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.5625rem;
+  > div {
+    input {
+      width: 100%;
+    }
+  }
+  input {
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    caret-color: var(--main-color);
+    &:focus {
+      outline: none;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    div {
+      input {
+        width: 100% !important;
+      }
+    }
+  }
+}
+#addBtn {
+  width: 100% !important;
+}

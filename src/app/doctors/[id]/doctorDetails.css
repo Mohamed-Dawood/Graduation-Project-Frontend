@@ -1,6 +1,6 @@
 .doctorDetails {
+  padding: 3.75rem 0;
   background-color: var(--fifth-color);
-  padding: 3.125rem;
   h3 {
     text-align: center;
   }
@@ -74,20 +74,6 @@
       img {
         width: 100% !important;
         height: 100% !important;
-      }
-    }
-  }
-  .about {
-    h4 {
-      text-align: center;
-    }
-  }
-}
-@media(max-width: 512px) {
-  .doctor {
-    .info {
-      p {
-        margin-top: 4.375rem !important;
       }
     }
   }

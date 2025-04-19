@@ -1,0 +1,69 @@
+.children {
+  h3 {
+    text-align: center;
+    font-size: 1.875rem;
+    font-weight: bold;
+  }
+  .divContent {
+    a {
+      text-decoration: none;
+      h5 {
+        color: black;
+        font-weight: bold;
+      }
+      p {
+        color: #908d8d;
+      }
+    }
+    margin-top: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    .content {
+      padding: 0.9375rem;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 1.375rem;
+      background-color: var(--fifth-color);
+      border-radius: 1.375rem;
+      -webkit-border-radius: 1.375rem;
+      -moz-border-radius: 1.375rem;
+      -ms-border-radius: 1.375rem;
+      -o-border-radius: 1.375rem;
+      img {
+        width: 12.3125rem;
+        height: 6.375rem;
+      }
+      .infoAndImage {
+        display: flex;
+        .info {
+          padding: 1.25rem 0 0 1.25rem;
+        }
+      }
+      .icons {
+        display: flex;
+        gap: 1.25rem;
+        margin-top: .625rem;
+        justify-content: end;
+      }
+      h6 {
+        font-size: 25px;
+        cursor: pointer;
+        color: var(--main-color);
+        a {
+          color: var(--main-color);
+        }
+        .delete {
+          color: rgb(215, 39, 39);
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .divContent {
+    .infoAndImage {
+      flex-direction: column;
+    }
+  }
+}

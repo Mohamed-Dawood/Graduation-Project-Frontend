@@ -1,8 +1,9 @@
 .content {
-  margin: 2rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
   .cardContent {
     width: 100%;
     display: flex;
@@ -62,10 +63,11 @@
 }
 @media (max-width: 768px) {
   .content {
-    margin: 0.625rem;
-    grid-template-columns: repeat(1, 1fr);
-    .cardContent {
-      padding-bottom: 15px;
+    .container {
+      grid-template-columns: repeat(1, 1fr);
+      .cardContent {
+        padding-bottom: 15px;
+      }
     }
   }
   .rate {

@@ -1,13 +1,13 @@
-'use client';
-import { host } from '@/Components/utils/Host';
-import './articles.css';
-import axios from 'axios';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { FaHeart } from 'react-icons/fa';
-import PageTitle from '@/Components/PageTitle/pageTitle';
-import Spinner from '@/Components/Spinner/Spinner';
+"use client";
+import { host } from "@/Components/utils/Host";
+import "./articles.css";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { FaHeart } from "react-icons/fa";
+import PageTitle from "@/Components/PageTitle/pageTitle";
+import Spinner from "@/Components/Spinner/Spinner";
 
 export default function Articles() {
   const [data, setData] = useState([]);
@@ -20,7 +20,7 @@ export default function Articles() {
     axios
       .get(`${host}/article/getAll`, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         withCredentials: true,
       })
@@ -31,8 +31,8 @@ export default function Articles() {
       })
       .catch((err) => {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
+          icon: "error",
+          title: "Oops...",
           text: `${err.message}`,
         });
       })
@@ -50,80 +50,76 @@ export default function Articles() {
   };
   return (
     <div>
-      <PageTitle text="Articles About Side Effects" />
-      <div className="buttons">
-        <button
-          style={{
-            backgroundColor: activeTab ? '#3640ce' : '#f6f6f6',
-            color: activeTab ? '#fff' : '#3640ce',
-          }}
-          onClick={() => setActiveTab(true)}
-        >
-          Basic
-        </button>
-        <button
-          style={{
-            backgroundColor: !activeTab ? '#3640ce' : '#f6f6f6',
-            color: !activeTab ? '#fff' : '#3640ce',
-          }}
-          onClick={() => setActiveTab(false)}
-        >
-          Additional
-        </button>
-      </div>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <div className="content">
-          {filteredData.length > 0 ? (
-            filteredData.map((item) => {
-              return (
-                <div key={item._id} className="cardContent">
-                  <div>
-                    <Image
-                      src={item.image}
-                      alt="Image"
-                      width={'150'}
-                      height={'80'}
-                    />
-                  </div>
-                  <div className="card">
-                    <div className="cardTitle">
-                      <p>
-                        {item.title.length > 25 ? (
-                          <>
-                            {item.title.slice(0, 11)}
-                            <br />
-                            {item.title.slice(11)}
-                          </>
-                        ) : (
-                          item.title
-                        )}
-                      </p>
-                      <FaHeart
-                        onClick={() => handleClickHeart(item._id)}
-                        style={{
-                          color: likedIds.includes(item._id)
-                            ? '#3640ce'
-                            : 'gray',
-                          cursor: 'pointer',
-                          marginLeft: 'auto',
-                        }}
+      <div className="container">
+        <PageTitle text="Articles About Side Effects" />
+        <div className="buttons">
+          <button
+            style={{
+              backgroundColor: activeTab ? "#3640ce" : "#f6f6f6",
+              color: activeTab ? "#fff" : "#3640ce",
+            }}
+            onClick={() => setActiveTab(true)}
+          >
+            Basic
+          </button>
+          <button
+            style={{
+              backgroundColor: !activeTab ? "#3640ce" : "#f6f6f6",
+              color: !activeTab ? "#fff" : "#3640ce",
+            }}
+            onClick={() => setActiveTab(false)}
+          >
+            Additional
+          </button>
+        </div>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <div className="content">
+            {filteredData.length > 0 ? (
+              filteredData.map((item) => {
+                return (
+                  <div key={item._id} className="cardContent">
+                    <div>
+                      <Image
+                        src={item.image}
+                        alt="Image"
+                        width={"150"}
+                        height={"80"}
                       />
                     </div>
-                    <div className="publishedDate">
-                      <p>{item.status}</p>
-                      <Link href={`articles/${item._id}`}>Read More</Link>
+                    <div className="card">
+                      <div className="cardTitle">
+                        <p>{item.title}</p>
+                        <FaHeart
+                          onClick={() => handleClickHeart(item._id)}
+                          style={{
+                            color: likedIds.includes(item._id)
+                              ? "#3640ce"
+                              : "gray",
+                            cursor: "pointer",
+                            marginLeft: "auto",
+                          }}
+                        />
+                      </div>
+                      <div className="publishedDate">
+                        <div>
+                          <p>{item.status}</p>
+                        </div>
+                        <div>
+                          <Link href={`articles/${item._id}`}>Read More</Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <p className="notFound">Not Found Vaccinations</p>
-          )}
-        </div>
-      )}
+                );
+              })
+            ) : (
+              <p className="notFound">Not Found Vaccinations</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

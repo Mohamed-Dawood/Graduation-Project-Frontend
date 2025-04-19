@@ -1,0 +1,51 @@
+.childInfo {
+  background-color: var(--fifth-color);
+  padding: 40px;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  img {
+    width: 18.75rem;
+    height: 18.75rem;
+  }
+  .nameAndGender,
+  .weightAndHeight {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    h6 {
+      font-weight: bold;
+    }
+  }
+  .date {
+    text-align: center;
+    margin-top: 1.25rem;
+    h6 {
+      font-weight: bold;
+    }
+  }
+  a {
+    display: block;
+    margin-top: 1.25rem;
+    text-decoration: none;
+    background-color: var(--main-color);
+    width: fit-content;
+    color: white;
+    padding: .625rem 1.875rem;
+    border-radius: .75rem;
+    -webkit-border-radius: .75rem;
+    -moz-border-radius: .75rem;
+    -ms-border-radius: .75rem;
+    -o-border-radius: .75rem;
+}
+}

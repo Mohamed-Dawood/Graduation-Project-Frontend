@@ -1,0 +1,42 @@
+
+.sidebar {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5625rem;
+    li {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      background-color: var(--fifth-color);
+      padding: 1.25rem 0.625rem;
+      border-radius: 12px;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      -ms-border-radius: 12px;
+      -o-border-radius: 12px;
+      .iconAndText {
+        display: flex;
+        align-items: center;
+        gap: .625rem;
+      }
+      svg {
+        color: var(--main-color);
+        font-size: 22px;
+      }
+      .arrow {
+        width: 100%;
+      }
+      &.logOut {
+        svg {
+          color: #FF0000;
+        }
+        .iconAndText {
+          span {
+            color: #FF0000;
+          }
+        }
+      }
+    }
+  }
+}

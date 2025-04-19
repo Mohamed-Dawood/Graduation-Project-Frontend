@@ -1,0 +1,64 @@
+.personalAccount {
+  h3 {
+    text-align: center;
+  }
+  form {
+    div {
+      label {
+        display: block;
+        color: #a3a2a2;
+        margin-top: 10px;
+      }
+      input {
+        margin-top: -8px;
+        padding: 0.625rem 2.5rem;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        -ms-border-radius: 12px;
+        -o-border-radius: 12px;
+        &:focus {
+          outline: none;
+        }
+      }
+      span {
+        position: absolute;
+        svg {
+          font-size: 1.5625rem;
+          margin-left: 0.625rem;
+        }
+      }
+    }
+    .buttons {
+      margin-top: 1.875rem;
+      display: flex;
+      justify-content: space-around;
+      button {
+        border: none;
+        padding: 0.625rem 1.875rem;
+        border-radius: 0.75rem;
+        -webkit-border-radius: 0.75rem;
+        -moz-border-radius: 0.75rem;
+        -ms-border-radius: 0.75rem;
+        -o-border-radius: 0.75rem;
+        color: var(--main-color);
+        background-color: transparent;
+        border: 1px solid var(--main-color);
+        &#active {
+          background-color: var(--main-color);
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .personalAccount {
+    h3 {
+      margin-top: 1.875rem;
+    }
+  }
+}
