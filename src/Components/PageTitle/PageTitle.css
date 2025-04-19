@@ -1,0 +1,6 @@
+.pageTitle {
+  text-align: center;
+  padding: 1rem;
+  color: var(--main-color);
+  text-transform: capitalize;
+}

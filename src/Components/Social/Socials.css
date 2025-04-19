@@ -1,0 +1,16 @@
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  a {
+    > div {
+      padding: 0.3rem;
+      border: 1px solid;
+      border-radius: 0.5rem;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+.content {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  .cardContent {
+    width: 100%;
+    display: flex;
+    background-color: var(--fifth-color);
+    padding: 1.25rem 0.625rem;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    img {
+      width: 11.1875rem;
+      height: 6.375rem;
+    }
+    .doctorInfo {
+      margin: 0.9375rem 0 0 0.9375rem;
+      position: relative;
+      width: 100%;
+      .nameAndHeart {
+        display: flex;
+        justify-content: space-between;
+        h6 {
+          font-size: 1.125rem;
+          font-weight: bold;
+        }
+        svg {
+          font-size: 1.5625rem;
+          color: #aca1a1;
+          cursor: pointer;
+        }
+      }
+      p {
+        color: var(--main-color);
+      }
+      .rate {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        svg {
+          color: #ffd90f;
+          margin-top: 0.3125rem;
+        }
+        a {
+          text-decoration: none;
+          background-color: var(--main-color);
+          color: white;
+          padding: 0.3125rem 0.625rem;
+          border-radius: 0.75rem;
+          -webkit-border-radius: 0.75rem;
+          -moz-border-radius: 0.75rem;
+          -ms-border-radius: 0.75rem;
+          -o-border-radius: 0.75rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .content {
+    margin: 0.625rem;
+    grid-template-columns: repeat(1, 1fr);
+    .cardContent {
+      padding-bottom: 15px;
+    }
+  }
+  .rate {
+    margin-top: 0;
+  }
+}
+@media (max-width: 1095px) {
+  .cardContent {
+    flex-direction: column;
+    padding: 1.25rem !important;
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+@media (max-width: 1047px) {
+  .cardContent {
+    flex-direction: column;
+    margin-right: 0.3125rem;
+  }
+}

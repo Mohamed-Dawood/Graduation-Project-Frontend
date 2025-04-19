@@ -1,0 +1,22 @@
+.input {
+  margin: 0.5rem 0;
+  label {
+    margin-bottom: 0.5rem;
+    display: block;
+    text-transform: capitalize;
+  }
+  > div {
+    display: flex;
+    position: relative;
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 1rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem 2rem;
+    }
+  }
+}
