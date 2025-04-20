@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import PageTitle from "@/Components/PageTitle/pageTitle";
 import Spinner from "@/Components/Spinner/Spinner";
+import InputSearch from "@/Components/InputSearch/InputSearch";
 
 export default function Articles() {
   const [data, setData] = useState([]);
@@ -72,6 +73,7 @@ export default function Articles() {
             Additional
           </button>
         </div>
+            <InputSearch />
         {loading ? (
           <Spinner />
         ) : (
