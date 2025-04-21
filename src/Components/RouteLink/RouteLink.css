@@ -1,0 +1,15 @@
+.routeLink {
+  a {
+    display: block;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+  }
+}

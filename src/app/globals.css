@@ -70,9 +70,11 @@ input,
 button {
   border: none;
   outline: none;
+  border-radius: 0.3rem;
+}
+input {
   border: 1px solid var(--text-color);
   background: none;
-  border-radius: 0.3rem;
 }
 .formTitle {
   text-align: center;
@@ -80,4 +82,13 @@ button {
   margin-bottom: 2rem;
   letter-spacing: 3px;
   color: var(--main-color);
+}
+.textUnderLine {
+  color: var(--main-color);
+  text-transform: capitalize;
+  text-decoration: underline wavy;
+  font-style: italic;
+}
+.landing {
+  padding: 2rem 0;
 }

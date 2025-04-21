@@ -4,12 +4,16 @@
   gap: 1.5rem;
   a {
     > div {
-      padding: 0.3rem;
-      border: 1px solid;
+      padding: 0.5rem 0.5rem;
+      border: 1px solid var(--text-color);
       border-radius: 0.5rem;
+      display: flex;
+      justify-self: center;
+      align-items: center;
       img {
         width: 30px;
         height: 30px;
+        padding: 0.3rem;
       }
     }
   }

@@ -19,6 +19,15 @@
           color: var(--text-color);
         }
       }
+      p,
+      span {
+        display: block;
+        text-align: center;
+        margin: 1rem 0;
+        a {
+          font-weight: bold;
+        }
+      }
     }
     .image {
       flex-basis: 50%;

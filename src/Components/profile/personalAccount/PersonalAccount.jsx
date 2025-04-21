@@ -1,40 +1,42 @@
-import "./personalAccount.css";
-import { CiUser } from "react-icons/ci";
-import { MdEmail } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { host } from "@/Components/utils/Host";
+import './personalAccount.css';
+import { CiUser } from 'react-icons/ci';
+import { MdEmail } from 'react-icons/md';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { FaLocationDot } from 'react-icons/fa6';
+import { RiLockPasswordFill } from 'react-icons/ri';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { host } from '@/Components/utils/Host';
 export default function PersonalAccount() {
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone_number, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone_number, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+
   //Start get data By Id
   function getDataById() {
+    const Id = localStorage.getItem('Id');
     axios
-      .get(`${host}/user/userById/86`, {
+      .get(`${host}/user/userById/${Id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
       .then((response) => {
         const user = response.data.data.rows[0];
-        setFirstName(user.first_name || "");
-        setLastName(user.last_name || "");
-        setEmail(user.email || "");
-        setPhone(user.phone_number || "");
-        setPassword(user.password || "");
+        setFirstName(user.first_name || '');
+        setLastName(user.last_name || '');
+        setEmail(user.email || '');
+        setPhone(user.phone_number || '');
+        setPassword(user.password || '');
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.message}`,
         });
       });
@@ -52,22 +54,18 @@ export default function PersonalAccount() {
       phone_number: phone_number,
     };
     axios
-      .put(
-        `https://baby-tracker-baby-tracker.up.railway.app/api/v1/user/update`,
-        params,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      )
+      .put(`${host}/user/update`, params, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
       .then((response) => {
         // console.log(response.data.data.rows[0]);
         getDataById();
         Swal.fire({
-          title: "Your information has been updated successfully ✅",
-          icon: "success",
+          title: 'Your information has been updated successfully ✅',
+          icon: 'success',
           draggable: true,
         });
       });
