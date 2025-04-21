@@ -1,3 +1,6 @@
+.articles {
+  margin: 1.875rem 0;
+}
 div {
   .heading {
     text-align: center;
@@ -92,6 +95,11 @@ div {
   font-size: 1.875rem;
   color: var(--main-color);
   font-weight: bold;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5625rem;
 }
 @media (max-width: 768px) {
   .buttons {

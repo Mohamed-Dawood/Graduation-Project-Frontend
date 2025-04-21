@@ -38,51 +38,53 @@ export default function Banner({ host }) {
     );
   };
   return (
-    <div>
-      <PageTitle text="doctors" />
-      <div className="content">
-        <div className="container">
-          {data.map((item, index) => {
-            return (
-              <div className="cardContent" key={item.user_id}>
-                <div>
-                  <Image src={doctorImage} alt="Doctor Image" />
-                </div>
-                <div className="doctorInfo">
-                  <div className="nameAndHeart">
-                    <h6>{`${item.first_name} ${item.last_name}`}</h6>
-                    <FaHeart
-                      onClick={() => handleClickHeart(item.user_id)}
-                      style={{
-                        color: likedIds.includes(item.user_id)
-                          ? "#3640ce"
-                          : "gray",
-                        cursor: "pointer",
-                      }}
-                    />
+    <div className="doctor">
+      <div>
+        <PageTitle text="doctors" />
+        <div className="content">
+          <div className="container">
+            {data.map((item, index) => {
+              return (
+                <div className="cardContent" key={item.user_id}>
+                  <div>
+                    <Image src={doctorImage} alt="Doctor Image" />
                   </div>
-                  <p>{item.specialization}</p>
-                  <div className="rate">
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "5px",
-                      }}
-                    >
-                      <span>{rate[index]}</span>
-                      <span className="star">
-                        <FaStar />
-                      </span>
+                  <div className="doctorInfo">
+                    <div className="nameAndHeart">
+                      <h6>{`${item.first_name} ${item.last_name}`}</h6>
+                      <FaHeart
+                        onClick={() => handleClickHeart(item.user_id)}
+                        style={{
+                          color: likedIds.includes(item.user_id)
+                            ? "#3640ce"
+                            : "gray",
+                          cursor: "pointer",
+                        }}
+                      />
                     </div>
-                    <div>
-                      <Link href={`/doctors/${item.user_id}`}>Read More</Link>
+                    <p>{item.specialization}</p>
+                    <div className="rate">
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "5px",
+                        }}
+                      >
+                        <span>{rate[index]}</span>
+                        <span className="star">
+                          <FaStar />
+                        </span>
+                      </div>
+                      <div>
+                        <Link href={`/doctors/${item.user_id}`}>Read More</Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
