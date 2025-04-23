@@ -1,8 +1,8 @@
 import './Button.css';
-function Button({ text, bgColor, type }) {
+function Button({ text, bgColor, ...props }) {
   return (
     <div className="button">
-      <button type={type} style={{ background: `var(${bgColor})` }}>
+      <button {...props} style={{ background: `var(${bgColor})` }}>
         {text}
       </button>
     </div>

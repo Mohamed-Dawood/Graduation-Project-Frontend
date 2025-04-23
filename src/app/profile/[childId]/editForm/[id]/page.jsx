@@ -105,7 +105,7 @@ export default function EditForm() {
       <div className="container">
         <div className="form">
           <div>
-            <PageTitle text={"My Child"} />
+            <PageTitle text="My Child" />
             <Image src={childImage} alt="Child Image" />
             <form>
               <div className="content">

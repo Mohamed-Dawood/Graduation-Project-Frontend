@@ -53,7 +53,7 @@ export default function Children(props) {
     <div>
       <div className="container">
         <div className="children">
-          <PageTitle text={"My children"} />
+          <PageTitle text="My children" />
           <div className="divContent">
             {data.map((item) => {
               return (

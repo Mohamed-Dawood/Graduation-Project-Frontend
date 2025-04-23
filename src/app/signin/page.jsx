@@ -77,7 +77,7 @@ function page() {
           <small>
             <Link href="/forgot-password">Forgot password?</Link>
           </small>
-          <Button text="sign in" bgColor="--main-color" type="submit" />
+          <Button text="sign in" bgColor="--main-color" type="submit"  />
           <p>Or register using</p>
           <Socials />
           <span>

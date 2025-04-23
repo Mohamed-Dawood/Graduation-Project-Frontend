@@ -76,7 +76,7 @@ export default function AddChild() {
         <div className="form">
           <div>
             <div>
-              <PageTitle text={"Add Child"} />
+              <PageTitle text="Add Child" />
             </div>
             <form>
               <div className="content">
