@@ -82,7 +82,7 @@ export default function Articles() {
 
       const rows = res.data.data.rows || [];
 
-      // فلترة بحروف متفرقة
+      
       const looseMatch = (text = "", input = "") => {
         if (!input) return true;
         text = text.toLowerCase();
