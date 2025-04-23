@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { host } from "@/Components/utils/Host";
+import PageTitle from "@/Components/PageTitle/PageTitle";
 export default function EditForm() {
   const [dataById, setDataById] = useState([]);
   const params = useParams();
@@ -104,7 +105,7 @@ export default function EditForm() {
       <div className="container">
         <div className="form">
           <div>
-            <h3>My child</h3>
+            <PageTitle text={"My Child"} />
             <Image src={childImage} alt="Child Image" />
             <form>
               <div className="content">

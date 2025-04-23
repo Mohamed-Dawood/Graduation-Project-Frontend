@@ -1,19 +1,16 @@
 .childInfo {
   background-color: var(--fifth-color);
   padding: 40px;
-  position: absolute;
-  left: 50%;
-  top: 15%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
+  width: fit-content;
   border-radius: 12px;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1.5625rem;
   img {
     width: 18.75rem;
     height: 18.75rem;
@@ -41,11 +38,11 @@
     background-color: var(--main-color);
     width: fit-content;
     color: white;
-    padding: .625rem 1.875rem;
-    border-radius: .75rem;
-    -webkit-border-radius: .75rem;
-    -moz-border-radius: .75rem;
-    -ms-border-radius: .75rem;
-    -o-border-radius: .75rem;
-}
+    padding: 0.625rem 1.875rem;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+  }
 }

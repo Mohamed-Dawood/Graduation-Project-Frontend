@@ -7,6 +7,7 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { MdDelete } from "react-icons/md";
 import { host } from "@/Components/utils/Host";
+import PageTitle from "@/Components/PageTitle/PageTitle";
 export default function Children(props) {
   const [data, setData] = useState([]);
   function getChildren() {
@@ -52,7 +53,7 @@ export default function Children(props) {
     <div>
       <div className="container">
         <div className="children">
-          <h3>My children</h3>
+          <PageTitle text={"My children"} />
           <div className="divContent">
             {data.map((item) => {
               return (

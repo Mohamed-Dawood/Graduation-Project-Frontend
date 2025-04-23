@@ -1,6 +1,6 @@
 "use client";
 import "./inputSearch.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function InputSearch({ onSearch, onReset }) {
   const [title, setTitle] = useState("");
@@ -8,22 +8,18 @@ export default function InputSearch({ onSearch, onReset }) {
   const [tags, setTags] = useState("");
   const [category, setCategory] = useState("");
 
-  const handleSearch = () => {
-    onSearch({
-      title,
-      author,
-      tags,
-      category,
-    });
-  };
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      const allEmpty = !title && !author && !tags && !category;
+      if (allEmpty) {
+        onReset(); 
+      } else {
+        onSearch({ title, author, tags, category });
+      }
+    }, 400);
 
-  const handleReset = () => {
-    setTitle("");
-    setAuthor("");
-    setTags("");
-    setCategory("");
-    onReset(); 
-  };
+    return () => clearTimeout(delayDebounce);
+  }, [title, author, tags, category]);
 
   return (
     <div className="inputSearch">
@@ -52,15 +48,6 @@ export default function InputSearch({ onSearch, onReset }) {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-        <div style={{ display: "flex", gap: "10px" }}>
-          <button onClick={handleSearch}>Search</button>
-          <button
-            onClick={handleReset}
-            style={{ backgroundColor: "#f44336", color: "#fff" }}
-          >
-            Reset
-          </button>
-        </div>
       </div>
     </div>
   );

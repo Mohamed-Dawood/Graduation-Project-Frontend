@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { host } from "@/Components/utils/Host";
 import Spinner from "@/Components/Spinner/Spinner";
+import { FaLink } from "react-icons/fa6";
 export default function ArticleDetail() {
   const params = useParams();
   const [data, setData] = useState(null);
@@ -132,7 +133,10 @@ export default function ArticleDetail() {
             {data.references.map((item, index) => {
               return (
                 <div key={index}>
-                  <Link href={`${item}`} className="ref">{item}</Link>
+                  <Link href={`${item}`} className="ref">
+                    <FaLink style={{marginTop: "10px"}} />
+                    {item.split("/")[2]}
+                  </Link>
                 </div>
               );
             })}

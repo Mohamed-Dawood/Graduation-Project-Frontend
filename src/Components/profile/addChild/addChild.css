@@ -3,11 +3,13 @@
   gap: 1.25rem;
   margin-top: 1.5625rem;
   > div {
-    input {
+    input,
+    select {
       width: 100%;
     }
   }
-  input {
+  input,
+  select {
     margin-top: 8px;
     border: 1px solid #ccc;
     padding: 10px 15px;

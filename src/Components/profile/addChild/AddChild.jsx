@@ -1,18 +1,18 @@
-import '../../../app/profile/[childId]/editForm/[id]/editForm.css';
-import './addChild.css';
-import { useState } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { host } from '@/Components/utils/Host';
-import { showToast } from '@/Components/Toast/Toast';
+import "../../../app/profile/[childId]/editForm/[id]/editForm.css";
+import "./addChild.css";
+import { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { host } from "@/Components/utils/Host";
+import { showToast } from "@/Components/Toast/Toast";
+import PageTitle from "@/Components/PageTitle/PageTitle";
 export default function AddChild() {
-  const [first_name, setFirst_name] = useState('');
-  const [last_name, setLast_name] = useState('');
-  const [gender, setGender] = useState('');
-  const [date_of_birth, setDate_of_birth] = useState('');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  // const [error, setError] = useState('');
+  const [first_name, setFirst_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [gender, setGender] = useState("");
+  const [date_of_birth, setDate_of_birth] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
 
   const handleAddChild = (e) => {
     e.preventDefault();
@@ -25,14 +25,9 @@ export default function AddChild() {
       !weight ||
       !height
     ) {
-      showToast('Please complete child data', 'warning');
+      showToast("Please complete child data", "warning");
       return;
     }
-
-    // if (!date_of_birth) {
-    //   setError('Please select a valid date.');
-    //   return;
-    // }
 
     const params = {
       user_id: 2,
@@ -49,29 +44,28 @@ export default function AddChild() {
     axios
       .post(`${host}/child/create`, params, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         withCredentials: true,
       })
       .then((response) => {
         Swal.fire({
-          title: 'Child added successfully ✅.',
-          icon: 'success',
+          title: "Child added successfully ✅.",
+          icon: "success",
           draggable: true,
         });
-        setError('');
-        setFirst_name('');
-        setLast_name('');
-        setGender('');
-        setDate_of_birth('');
-        setWeight('');
-        setHeight('');
+        setFirst_name("");
+        setLast_name("");
+        setGender("");
+        setDate_of_birth("");
+        setWeight("");
+        setHeight("");
       })
       .catch((error) => {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: `${error.response?.data?.msg || 'Something went wrong'}`,
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response?.data?.msg || "Something went wrong"}`,
         });
       });
   };
@@ -81,13 +75,16 @@ export default function AddChild() {
       <div className="container">
         <div className="form">
           <div>
-            <h3>Add Child</h3>
+            <div>
+              <PageTitle text={"Add Child"} />
+            </div>
             <form>
               <div className="content">
                 <div>
                   <label>First Name</label>
                   <br />
                   <input
+                    value={first_name}
                     type="text"
                     placeholder="First Name"
                     onChange={(e) => setFirst_name(e.target.value)}
@@ -98,6 +95,7 @@ export default function AddChild() {
                   <label>Last Name</label>
                   <br />
                   <input
+                    value={last_name}
                     type="text"
                     placeholder="Last Name"
                     onChange={(e) => setLast_name(e.target.value)}
@@ -109,17 +107,21 @@ export default function AddChild() {
                 <div>
                   <label>Gender</label>
                   <br />
-                  <input
-                    type="text"
-                    placeholder="Gender"
+                  <select
+                    value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     required
-                  />
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 </div>
                 <div>
                   <label>Date</label>
                   <br />
                   <input
+                    value={date_of_birth}
                     type="date"
                     placeholder="Date, EX: 2025-04-19"
                     onChange={(e) => setDate_of_birth(e.target.value)}
@@ -132,6 +134,7 @@ export default function AddChild() {
                   <label>Weight</label>
                   <br />
                   <input
+                    value={weight}
                     type="text"
                     placeholder="Weight"
                     onChange={(e) => setWeight(e.target.value)}
@@ -142,6 +145,7 @@ export default function AddChild() {
                   <label>Height</label>
                   <br />
                   <input
+                    value={height}
                     type="text"
                     placeholder="Height"
                     onChange={(e) => setHeight(e.target.value)}
@@ -152,7 +156,7 @@ export default function AddChild() {
               <div className="buttons">
                 <input
                   type="submit"
-                  value={'Add'}
+                  value={"Add"}
                   onClick={handleAddChild}
                   className="add"
                   id="addBtn"

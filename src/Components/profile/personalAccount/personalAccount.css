@@ -36,6 +36,7 @@
       display: flex;
       justify-content: space-around;
       button {
+        cursor: pointer;
         border: none;
         padding: 0.625rem 1.875rem;
         border-radius: 0.75rem;
@@ -43,12 +44,13 @@
         -moz-border-radius: 0.75rem;
         -ms-border-radius: 0.75rem;
         -o-border-radius: 0.75rem;
-        color: var(--main-color);
-        background-color: transparent;
-        border: 1px solid var(--main-color);
-        &#active {
+        color: white;
+        &#edit {
           background-color: var(--main-color);
           color: white;
+        }
+        &#delete {
+          background-color: rgb(201, 51, 51);
         }
       }
     }
