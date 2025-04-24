@@ -1,4 +1,4 @@
-.childInfo {
+.info {
   background-color: var(--fifth-color);
   padding: 40px;
   width: fit-content;
@@ -14,20 +14,22 @@
   img {
     width: 18.75rem;
     height: 18.75rem;
-  }
-  .nameAndGender,
-  .weightAndHeight {
+}
+  .boxOne,
+  .boxTwo {
     margin-top: 1.25rem;
     display: flex;
     justify-content: space-between;
     h6 {
+      font-size: 18px;
       font-weight: bold;
     }
   }
-  .date {
+  .boxThree {
     text-align: center;
     margin-top: 1.25rem;
     h6 {
+      font-size: 18px;
       font-weight: bold;
     }
   }

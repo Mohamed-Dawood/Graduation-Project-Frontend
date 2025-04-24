@@ -1,28 +1,31 @@
-"use client";
-import { useEffect, useState } from "react";
-import "./doctorDetails.css";
-import axios from "axios";
-import { useParams } from "next/navigation";
-import doctorImage from "../../../assets/images/doctor/doctor.png";
-import Image from "next/image";
-import { FaHeart } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
-import Swal from "sweetalert2";
-import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa";
-import { FaPhoneAlt } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
-import { host } from "@/Components/utils/Host";
+'use client';
+import { useEffect, useState } from 'react';
+import './doctorDetails.css';
+import axios from 'axios';
+import { useParams } from 'next/navigation';
+import doctorImage from '../../../assets/images/doctor/doctor.png';
+import Image from 'next/image';
+import { FaHeart } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa6';
+import Swal from 'sweetalert2';
+import Link from 'next/link';
+import { FaWhatsapp } from 'react-icons/fa';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { SiGmail } from 'react-icons/si';
+import { host } from '@/Components/utils/Host';
+import Spinner from '@/Components/Spinner/Spinner';
 
 export default function DoctorDetails() {
   const params = useParams();
   const [data, setData] = useState([]);
   const [dataAbout, setDataAbout] = useState([]);
+  const [loading, setLoading] = useState(false);
   function getData() {
+    setLoading(true);
     axios
       .get(`${host}/doctor/${params.id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
@@ -31,8 +34,8 @@ export default function DoctorDetails() {
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.message}`,
         });
       });
@@ -41,7 +44,7 @@ export default function DoctorDetails() {
     axios
       .get(`${host}/doctor/Appointments/${params.id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
@@ -50,10 +53,13 @@ export default function DoctorDetails() {
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.message}`,
         });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }
   useEffect(() => {
@@ -64,7 +70,9 @@ export default function DoctorDetails() {
     <div className="doctorDetails">
       <div className="container">
         <h3>Information About Doctor</h3>
-        {
+        {loading ? (
+          <Spinner />
+        ) : (
           <div>
             <div className="doctor">
               <div className="doctorCard">
@@ -92,7 +100,7 @@ export default function DoctorDetails() {
               </Link>
               {data?.phone_number && (
                 <Link
-                  href={`https://wa.me/${data.phone_number.replace("+", "")}`}
+                  href={`https://wa.me/${data.phone_number.replace('+', '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -126,7 +134,7 @@ export default function DoctorDetails() {
               </div>
             </div>
           </div>
-        }
+        )}
       </div>
     </div>
   );

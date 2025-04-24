@@ -1,0 +1,33 @@
+.viccine {
+  margin: 1.875rem 0;
+  .cardContent {
+    .card {
+      .cardTitle {
+        position: absolute;
+        width: calc(100% - 220px);
+        input {
+          width: 1.25rem;
+          height: 0.9375rem;
+          cursor: pointer;
+          &:checked {
+            accent-color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+}
+@media(max-width: 768px) {
+  #publishedDateVaccine {
+    margin-top: 1.875rem !important;
+  }
+}
+@media(max-width: 365px) {
+  .cardContent {
+    #publishedDateVaccine {
+      p {
+        font-size: .75rem !important;
+      }
+    }
+  }
+}

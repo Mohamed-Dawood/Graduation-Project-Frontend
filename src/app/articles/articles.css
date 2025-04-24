@@ -1,32 +1,27 @@
 .articles {
   margin: 1.875rem 0;
 }
+.buttons {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-around;
+  gap: 1.25rem;
+}
+.buttons button {
+  width: 12.5rem;
+  height: 3.125rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 1.25rem;
+  font-weight: bold;
+  font-size: 1.125rem;
+  transition: 0.3s;
+}
+.buttons button:hover {
+  opacity: 0.9;
+}
 div {
-  .heading {
-    text-align: center;
-    margin-top: 0.9375rem;
-    color: var(--main-color);
-  }
-  .buttons {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: space-around;
-    gap: 1.25rem;
-  }
-  .buttons button {
-    width: 12.5rem;
-    height: 3.125rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 1.25rem;
-    font-weight: bold;
-    font-size: 1.125rem;
-    transition: 0.3s;
-  }
-
-  .buttons button:hover {
-    opacity: 0.9;
-  }
+  
 
   .content {
     display: flex;
@@ -75,7 +70,7 @@ div {
     width: calc(100% - 12.5rem) !important;
     display: flex;
     justify-content: space-between;
-    margin: 1.25rem 0 0 1.25rem;
+    margin: 2.5rem 0 0 1.25rem;
     padding-right: 0.625rem;
     a {
       display: block;
@@ -123,6 +118,20 @@ div {
     display: flex;
     .cardContent {
       flex-basis: 100%;
+    }
+  }
+}
+@media(max-width: 768px) {
+  .articles {
+    .publishedDate {
+      margin-top: 1.5625rem !important;
+    }
+  }
+}
+@media(max-width: 440px) {
+  .articles {
+    .publishedDate {
+      margin-top: .9375rem !important;
     }
   }
 }
