@@ -1,0 +1,25 @@
+.medicineDetails {
+  .container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    background-color: var(--fifth-color);
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    width: fit-content;
+    img {
+      border-radius: 0.75rem;
+      -webkit-border-radius: 0.75rem;
+      -moz-border-radius: 0.75rem;
+      -ms-border-radius: 0.75rem;
+      -o-border-radius: 0.75rem;
+    }
+    .nameAndPrice {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

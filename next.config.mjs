@@ -2,13 +2,15 @@
 const nextConfig = {
   images: {
     domains: [
-      "content.presspage.com",
-      "encrypted-tbn0.gstatic.com",
-      "www.cdc.gov",
-      "www.shutterstock.com",
+      'content.presspage.com',
+      'encrypted-tbn0.gstatic.com',
+      'www.cdc.gov',
+      'www.shutterstock.com',
       'res.cloudinary.com',
       'media.gettyimages.com',
       'img.freepik.com',
+      'petracarestore.com',
+      'cdn.salla.sa',
     ],
   },
 };

@@ -14,7 +14,6 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import { host } from '@/Components/utils/Host';
 import Spinner from '@/Components/Spinner/Spinner';
-
 export default function DoctorDetails() {
   const params = useParams();
   const [data, setData] = useState([]);
@@ -49,7 +48,7 @@ export default function DoctorDetails() {
         withCredentials: true,
       })
       .then((response) => {
-        setDataAbout(response.data.data.rows[0]);
+        setDataAbout(response.data.data.rows);
       })
       .catch((error) => {
         Swal.fire({
@@ -130,7 +129,26 @@ export default function DoctorDetails() {
               </div>
               <div>
                 <h4>Working hours</h4>
-                <p>{`${dataAbout.available_day}, ${dataAbout.start_time} : ${dataAbout.end_time}`}</p>
+                {/* <p>{`${dataAbout.available_day}, ${dataAbout.start_time} : ${dataAbout.end_time}`}</p>
+                 */}
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Day</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {dataAbout.map((item) => (
+                      <tr key={item.availability_id}>
+                        <td>{item.available_day}</td>
+                        <td>{item.start_time}</td>
+                        <td>{item.end_time}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

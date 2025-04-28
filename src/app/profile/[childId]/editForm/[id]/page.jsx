@@ -1,69 +1,64 @@
-"use client";
-import "./editForm.css";
-import { useParams } from "next/navigation";
-import childImage from "../../../../../assets/images/child/child.png";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { host } from "@/Components/utils/Host";
-import PageTitle from "@/Components/PageTitle/PageTitle";
+'use client';
+import './editForm.css';
+import { useParams } from 'next/navigation';
+import childImage from '../../../../../assets/images/child/child.png';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { host } from '@/Components/utils/Host';
+import PageTitle from '@/Components/PageTitle/PageTitle';
 export default function EditForm() {
   const [dataById, setDataById] = useState([]);
   const params = useParams();
-  const [first_name, setFirst_name] = useState("");
-  const [last_name, setLast_name] = useState("");
-  const [gender, setGender] = useState("");
-  const [date_of_birth, setDate_of_birth] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-
+  const [first_name, setFirst_name] = useState('');
+  const [last_name, setLast_name] = useState('');
+  const [gender, setGender] = useState('');
+  const [date_of_birth, setDate_of_birth] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   function getDataById() {
     axios
       .get(`${host}/child/childById/${params.id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
       .then((response) => {
         const data = response.data.data.rows[0];
-        setFirst_name(data.first_name || "");
-        setLast_name(data.last_name || "");
-        setGender(data.gender || "");
-        setDate_of_birth(data.date_of_birth || "");
-        setWeight(data.weight || "");
-        setHeight(data.height || "");
+        setFirst_name(data.first_name || '');
+        setLast_name(data.last_name || '');
+        setGender(data.gender || '');
+        setDate_of_birth(data.date_of_birth || '');
+        setWeight(data.weight || '');
+        setHeight(data.height || '');
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.msg}`,
         });
       });
   }
-
   const handleEdit = (e) => {
     e.preventDefault();
-
     if (!first_name || !last_name || !gender || !weight || !height) {
       Swal.fire({
-        icon: "error",
-        title: "All fields are required!",
+        icon: 'error',
+        title: 'All fields are required!',
       });
       return;
     }
-
     if (weight <= 0 || height <= 0 || isNaN(weight) || isNaN(height)) {
       Swal.fire({
-        icon: "error",
-        title: "Weight and height must be positive numbers!",
+        icon: 'error',
+        title: 'Weight and height must be positive numbers!',
       });
       return;
     }
-
     const updatedData = {
       first_name,
       last_name,
@@ -72,34 +67,31 @@ export default function EditForm() {
       weight,
       height,
     };
-
     axios
       .put(`${host}/child/childById/${params.id}`, updatedData, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
       .then((response) => {
         Swal.fire({
-          title: "Data updated successfully ✅",
-          icon: "success",
+          title: 'Data updated successfully ✅',
+          icon: 'success',
           draggable: true,
         });
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.msg}`,
         });
       });
   };
-
   useEffect(() => {
     getDataById();
   }, []);
-
   return (
     <div>
       <div className="container">
@@ -113,20 +105,32 @@ export default function EditForm() {
                   <label>First Name</label>
                   <br />
                   <input
+                    pattern="[A-Za-z]"
                     type="text"
                     placeholder="First Name"
                     onChange={(e) => setFirst_name(e.target.value)}
                     value={first_name}
+                    onKeyPress={(e) => {
+                      if (!/[a-zA-Z]/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                   />
                 </div>
                 <div>
                   <label>Last Name</label>
                   <br />
                   <input
+                    pattern="[A-Za-z]"
                     type="text"
                     placeholder="Last Name"
                     onChange={(e) => setLast_name(e.target.value)}
                     value={last_name}
+                    onKeyPress={(e) => {
+                      if (!/[a-zA-Z]/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -134,12 +138,16 @@ export default function EditForm() {
                 <div>
                   <label>Gender</label>
                   <br />
-                  <input
+                  <select onChange={(e) => setGender(e.target.value)}>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  {/* <input
                     type="text"
                     placeholder="Gender"
                     onChange={(e) => setGender(e.target.value)}
                     value={gender}
-                  />
+                  /> */}
                 </div>
                 <div>
                   <label>Date</label>
@@ -174,10 +182,9 @@ export default function EditForm() {
                   />
                 </div>
               </div>
-
               <div className="buttons">
-                <Link href={"/profile"}>Back</Link>
-                <input type="submit" value={"Save"} onClick={handleEdit} />
+                <Link href={'/profile'}>Back</Link>
+                <input type="submit" value={'Save'} onClick={handleEdit} />
               </div>
             </form>
           </div>

@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import "./children.css";
-import axios from "axios";
-import childImage from "../../../assets/images/child/child.png";
-import Image from "next/image";
-import Link from "next/link";
-import Swal from "sweetalert2";
-import { MdDelete } from "react-icons/md";
-import { host } from "@/Components/utils/Host";
-import PageTitle from "@/Components/PageTitle/PageTitle";
+import { useEffect, useState } from 'react';
+import './children.css';
+import axios from 'axios';
+import childImage from '../../../assets/images/child/child.png';
+import Image from 'next/image';
+import Link from 'next/link';
+import Swal from 'sweetalert2';
+import { MdDelete } from 'react-icons/md';
+import { host } from '@/Components/utils/Host';
+import PageTitle from '@/Components/PageTitle/PageTitle';
 export default function Children(props) {
   const [data, setData] = useState([]);
   function getChildren() {
     axios
       .get(`${host}/child/myChildren`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
@@ -23,8 +23,8 @@ export default function Children(props) {
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.message}`,
         });
       });
@@ -33,14 +33,14 @@ export default function Children(props) {
     axios
       .delete(`${host}/child/childById/${id}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
       .then((response) => {
         Swal.fire({
           title: `${response.data.message} ✅`,
-          icon: "success",
+          icon: 'success',
           draggable: true,
         });
         getChildren();
@@ -57,30 +57,42 @@ export default function Children(props) {
           <div className="divContent">
             {data.map((item) => {
               return (
-                <div className="content" key={item.child_id}>
-                  <Link href={`profile/${item.child_id}`}>
-                    <div className="infoAndImage">
-                      <div>
-                        <Image src={childImage} alt="Child Image" />
+                <div className="contentInformation" key={item.child_id} style={{marginTop: "15px"}}>
+                  <div className="content">
+                    <Link href={`profile/${item.child_id}`}>
+                      <div className="infoAndImage">
+                        <div>
+                          <Image src={childImage} alt="Child Image" />
+                        </div>
+                        <div className="info">
+                          <h5>{`${item.first_name} ${item.last_name}`}</h5>
+                          <p>{item.date_of_birth}</p>
+                        </div>
                       </div>
-                      <div className="info">
-                        <h5>{`${item.first_name} ${item.last_name}`}</h5>
-                        <p>{item.date_of_birth}</p>
-                      </div>
+                    </Link>
+                    <div className="icons">
+                      <h6>
+                        <Link href={`/profile/50/editForm/${item.child_id}`}>
+                          {props.icon}
+                        </Link>
+                      </h6>
+                      <h6>
+                        <MdDelete
+                          className="delete"
+                          onClick={() => handleDelete(item.child_id)}
+                        />
+                      </h6>
                     </div>
-                  </Link>
-                  <div className="icons">
-                    <h6>
-                      <Link href={`/profile/50/editForm/${item.child_id}`}>
-                        {props.icon}
-                      </Link>
-                    </h6>
-                    <h6>
-                      <MdDelete
-                        className="delete"
-                        onClick={() => handleDelete(item.child_id)}
-                      />
-                    </h6>
+                  </div>
+                  <div className="buttons">
+                    <Link href={`profile/${item.child_id}`} className="active">
+                      Details
+                    </Link>
+                    <Link
+                      href={`/profile/childDosesByChildId/${item.child_id}`}
+                    >
+                      View Doses
+                    </Link>
                   </div>
                 </div>
               );

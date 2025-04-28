@@ -1,18 +1,18 @@
-import "../../../app/profile/[childId]/editForm/[id]/editForm.css";
-import "./addChild.css";
-import { useState } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { host } from "@/Components/utils/Host";
-import { showToast } from "@/Components/Toast/Toast";
-import PageTitle from "@/Components/PageTitle/PageTitle";
+import '../../../app/profile/[childId]/editForm/[id]/editForm.css';
+import './addChild.css';
+import { useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { host } from '@/Components/utils/Host';
+import { showToast } from '@/Components/Toast/Toast';
+import PageTitle from '@/Components/PageTitle/PageTitle';
 export default function AddChild() {
-  const [first_name, setFirst_name] = useState("");
-  const [last_name, setLast_name] = useState("");
-  const [gender, setGender] = useState("");
-  const [date_of_birth, setDate_of_birth] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
+  const [first_name, setFirst_name] = useState('');
+  const [last_name, setLast_name] = useState('');
+  const [gender, setGender] = useState('');
+  const [date_of_birth, setDate_of_birth] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
 
   const handleAddChild = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ export default function AddChild() {
       !weight ||
       !height
     ) {
-      showToast("Please complete child data", "warning");
+      showToast('Please complete child data', 'warning');
       return;
     }
 
@@ -44,28 +44,28 @@ export default function AddChild() {
     axios
       .post(`${host}/child/create`, params, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
       .then((response) => {
         Swal.fire({
-          title: "Child added successfully ✅.",
-          icon: "success",
+          title: 'Child added successfully ✅.',
+          icon: 'success',
           draggable: true,
         });
-        setFirst_name("");
-        setLast_name("");
-        setGender("");
-        setDate_of_birth("");
-        setWeight("");
-        setHeight("");
+        setFirst_name('');
+        setLast_name('');
+        setGender('');
+        setDate_of_birth('');
+        setWeight('');
+        setHeight('');
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${error.response?.data?.msg || "Something went wrong"}`,
+          icon: 'error',
+          title: 'Oops...',
+          text: `${error.response?.data?.msg || 'Something went wrong'}`,
         });
       });
   };
@@ -86,9 +86,15 @@ export default function AddChild() {
                   <input
                     value={first_name}
                     type="text"
+                    pattern="[A-Za-z]"
                     placeholder="First Name"
                     onChange={(e) => setFirst_name(e.target.value)}
                     required
+                    onKeyPress={(e) => {
+                      if (!/[a-zA-Z]/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                   />
                 </div>
                 <div>
@@ -97,9 +103,15 @@ export default function AddChild() {
                   <input
                     value={last_name}
                     type="text"
+                    pattern="[A-Za-z]"
                     placeholder="Last Name"
                     onChange={(e) => setLast_name(e.target.value)}
                     required
+                    onKeyPress={(e) => {
+                      if (!/[a-zA-Z]/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -156,7 +168,7 @@ export default function AddChild() {
               <div className="buttons">
                 <input
                   type="submit"
-                  value={"Add"}
+                  value={'Add'}
                   onClick={handleAddChild}
                   className="add"
                   id="addBtn"

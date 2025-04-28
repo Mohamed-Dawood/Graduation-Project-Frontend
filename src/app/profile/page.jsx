@@ -1,25 +1,27 @@
-"use client";
-import "./profile.css";
-import "../../Components/profile/sidebar/sidebar.css";
-import { IoIosSettings } from "react-icons/io";
-import { FaAngleRight } from "react-icons/fa6";
-import { CiBellOn } from "react-icons/ci";
-import { MdPersonAddAlt1 } from "react-icons/md";
-import { CiLogin } from "react-icons/ci";
-import { FaRegEdit } from "react-icons/fa";
-import { useState } from "react";
-import PersonalAccount from "@/Components/profile/personalAccount/PersonalAccount";
-import Children from "@/Components/profile/children/Children";
-import AddChild from "@/Components/profile/addChild/AddChild";
+'use client';
+import './profile.css';
+import '../../Components/profile/sidebar/sidebar.css';
+import { IoIosSettings } from 'react-icons/io';
+import { FaAngleRight } from 'react-icons/fa6';
+import { CiBellOn } from 'react-icons/ci';
+import { MdPersonAddAlt1 } from 'react-icons/md';
+import { CiLogin } from 'react-icons/ci';
+import { FaRegEdit } from 'react-icons/fa';
+import { FaRegCalendarAlt } from 'react-icons/fa';
+import { useState } from 'react';
+import PersonalAccount from '@/Components/profile/personalAccount/PersonalAccount';
+import Children from '@/Components/profile/children/Children';
+import AddChild from '@/Components/profile/addChild/AddChild';
+import Reservation from '@/Components/profile/reservation/Reservation';
 export default function Profile() {
-  const [data, setData] = useState("personalAccount");
+  const [data, setData] = useState('personalAccount');
   return (
     <div>
       <div className="container">
         <div className="profile">
           <div className="sidebar">
             <ul>
-              <li onClick={() => setData("personalAccount")}>
+              <li onClick={() => setData('personalAccount')}>
                 <div className="iconAndText">
                   <IoIosSettings />
                   <span>Personal account settings</span>
@@ -37,7 +39,7 @@ export default function Profile() {
                   <FaAngleRight className="arrow" />
                 </div>
               </li>
-              <li onClick={() => setData("addChild")}>
+              <li onClick={() => setData('addChild')}>
                 <div className="iconAndText">
                   <MdPersonAddAlt1 />
                   <span>Add a child</span>
@@ -46,10 +48,19 @@ export default function Profile() {
                   <FaAngleRight className="arrow" />
                 </div>
               </li>
-              <li onClick={() => setData("children")}>
+              <li onClick={() => setData('children')}>
                 <div className="iconAndText">
                   <MdPersonAddAlt1 />
                   <span>My children</span>
+                </div>
+                <div>
+                  <FaAngleRight className="arrow" />
+                </div>
+              </li>
+              <li onClick={() => setData('reservation')}>
+                <div className="iconAndText">
+                  <FaRegCalendarAlt />
+                  <span>Reservation</span>
                 </div>
                 <div>
                   <FaAngleRight className="arrow" />
@@ -66,9 +77,10 @@ export default function Profile() {
               </li>
             </ul>
           </div>
-          {data == "personalAccount" && <PersonalAccount />}
-          {data == "children" && <Children icon={<FaRegEdit />} />}
-          {data == "addChild" && <AddChild />}
+          {data == 'personalAccount' && <PersonalAccount />}
+          {data == 'children' && <Children icon={<FaRegEdit />} />}
+          {data == 'addChild' && <AddChild />}
+          {data == 'reservation' && <Reservation />}
         </div>
       </div>
     </div>
