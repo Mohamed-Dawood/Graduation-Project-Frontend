@@ -13,7 +13,7 @@ const Reserve = () => {
   const [doctorId, setDoctorId] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
   const [time, setTime] = useState('');
-  const [tableDoctor, setTableDoctor] = useState([]);  
+  const [tableDoctor, setTableDoctor] = useState([]);
   const [appointments, setAppointments] = useState([]);
   function getDoctorAppointments(doctorId) {
     axios
@@ -26,8 +26,8 @@ const Reserve = () => {
       .then((response) => {
         const doctorAppointments = response.data.data.rows;
         setTableDoctor(doctorAppointments);
-        setAppointments([]); 
-        setSelectedDay(''); 
+        setAppointments([]);
+        setSelectedDay('');
       })
       .catch((error) => {
         showToast(`${error.message}`, 'error');
@@ -36,12 +36,14 @@ const Reserve = () => {
   const handleDoctorChange = (e) => {
     const doctorId = e.target.selectedOptions[0].getAttribute('data-id');
     setDoctorId(doctorId);
-    getDoctorAppointments(doctorId); 
+    getDoctorAppointments(doctorId);
   };
   const handleDayChange = (e) => {
     const selectedDay = e.target.value;
     setSelectedDay(selectedDay);
-    const filteredAppointments = tableDoctor.filter(item => item.available_day === selectedDay);
+    const filteredAppointments = tableDoctor.filter(
+      (item) => item.available_day === selectedDay
+    );
     setAppointments(filteredAppointments);
   };
   function getAllDoctors() {
@@ -71,7 +73,7 @@ const Reserve = () => {
       doctor_id: doctorId,
       child_id: params.childId,
       child_dose_id: params.doseId,
-      reservation_date: selectedDay, 
+      reservation_date: selectedDay,
     };
     axios
       .post(`${host}/reservation/create`, paramsData, {
@@ -118,7 +120,9 @@ const Reserve = () => {
                   <option value="" disabled hidden>
                     Choose Day
                   </option>
-                  {[...new Set(tableDoctor.map(item => item.available_day))].map((day, index) => (
+                  {[
+                    ...new Set(tableDoctor.map((item) => item.available_day)),
+                  ].map((day, index) => (
                     <option value={day} key={index}>
                       {day}
                     </option>
@@ -127,7 +131,9 @@ const Reserve = () => {
               )}
               {appointments.length > 0 && (
                 <>
-                  <h3 className="headingTable">Available Time for {selectedDay}</h3>
+                  <h3 className="headingTable">
+                    Available Time for {selectedDay}
+                  </h3>
                   <table>
                     <thead>
                       <tr>
@@ -146,7 +152,7 @@ const Reserve = () => {
                   </table>
                 </>
               )}
-              <input type="date" onChange={(e) => setDate(e.target.value)} />
+              <input type="date" onChange={(e) => setSelectedDay(e.target.value)} />
               <input type="time" onChange={(e) => setTime(e.target.value)} />
               <button className="submit" onClick={postDataReverse}>
                 Submit

@@ -4,6 +4,7 @@
     justify-content: center;
     margin-top: 2.5rem;
     background-color: var(--fifth-color);
+    padding: 1.875rem;
     border-radius: 0.75rem;
     -webkit-border-radius: 0.75rem;
     -moz-border-radius: 0.75rem;
@@ -16,10 +17,33 @@
       -moz-border-radius: 0.75rem;
       -ms-border-radius: 0.75rem;
       -o-border-radius: 0.75rem;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
     }
     .nameAndPrice {
       display: flex;
       justify-content: space-between;
+    }
+    .contentDetails {
+      padding: 10px 0;
+    }
+    a {
+      display: block;
+      background-color: var(--main-color);
+      color: white;
+      padding: 0.625rem 1.5625rem;
+      margin-top: 15px;
+      border-radius: 0.75rem;
+      -webkit-border-radius: 0.75rem;
+      -moz-border-radius: 0.75rem;
+      -ms-border-radius: 0.75rem;
+      -o-border-radius: 0.75rem;
+      width: fit-content;
     }
   }
 }
