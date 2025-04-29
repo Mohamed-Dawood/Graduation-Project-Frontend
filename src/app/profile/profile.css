@@ -7,6 +7,19 @@
   }
   .sidebar {
     flex-basis: 30% !important;
+    ul {
+      li.active {
+        background-color: var(--main-color);
+        svg {
+          color: white;
+        }
+        .iconAndText {
+          span {
+            color: white;
+          }
+        }
+      }
+    }
   }
 }
 @media(max-width: 1286px) {

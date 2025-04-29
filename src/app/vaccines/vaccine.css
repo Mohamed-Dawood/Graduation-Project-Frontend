@@ -15,6 +15,9 @@
         }
       }
     }
+    svg {
+      color: var(--main-color);
+    }
   }
 }
 @media(max-width: 768px) {

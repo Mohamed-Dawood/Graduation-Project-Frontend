@@ -4,18 +4,20 @@ import { MdEmail } from 'react-icons/md';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { host } from '@/Components/utils/Host';
 import PageTitle from '@/Components/PageTitle/PageTitle';
+import { showToast } from '@/Components/Toast/Toast';
+import { useRouter } from 'next/navigation';
 export default function PersonalAccount() {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone_number, setPhone] = useState('');
   const [password, setPassword] = useState('');
-
+  const [initialdata, setInitialData] = useState({});
   //Start get data By Id
   function getDataById() {
     const Id = localStorage.getItem('Id');
@@ -33,6 +35,12 @@ export default function PersonalAccount() {
         setEmail(user.email || '');
         setPhone(user.phone_number || '');
         setPassword(user.password || '');
+        setInitialData({
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          phone_number: user.phone_number,
+        });
       })
       .catch((error) => {
         Swal.fire({
@@ -44,36 +52,67 @@ export default function PersonalAccount() {
   }
   //End Get Data With ID
 
-  //Start Edit Function
+  //Start Handle Edit
   const handleEdit = (e) => {
     e.preventDefault();
-    const params = {
-      user_id: 86,
+    const Id = localStorage.getItem('Id');
+    const changeData =
+      first_name !== initialdata.first_name ||
+      last_name !== initialdata.last_name ||
+      email !== initialdata.email ||
+      phone_number !== initialdata.phone_number;
+    if (!changeData) {
+      showToast(`You didn't change anything`, 'warning');
+      return;
+    }
+    const paramsEdit = {
       first_name: first_name,
       last_name: last_name,
       email: email,
       phone_number: phone_number,
     };
     axios
-      .put(`${host}/user/update`, params, {
+      .put(`${host}/user/update/${Id}`, paramsEdit, {
         headers: {
           'Content-Type': 'application/json',
         },
         withCredentials: true,
       })
       .then((response) => {
-        // console.log(response.data.data.rows[0]);
-        getDataById();
-        Swal.fire({
-          title: 'Your information has been updated successfully ✅',
-          icon: 'success',
-          draggable: true,
-        });
+        // console.log(response);
+        showToast(`Updated Your Account Successfuly`, 'success');
+      })
+      .catch((error) => {
+        showToast(`${error.message}`, 'error');
       });
   };
+  //End Handle Edit
+  const router = useRouter();
+  //Start Delete Account
+  const deleteAccount = (e) => {
+    e.preventDefault();
+    const Id = localStorage.getItem('Id');
+    axios
+      .delete(`${host}/user/userById/${Id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        // console.log(response);
+        showToast(`You Deleted Your Account Successfuly`, 'success');
+        router.push('/signin');
+      })
+      .catch((error) => {
+        showToast(`${error.message}, "error`);
+      });
+  };
+  //End Delete Account
   useEffect(() => {
     getDataById();
   }, []);
+
   return (
     <div>
       <div className="container">
@@ -136,7 +175,7 @@ export default function PersonalAccount() {
               <button id="edit" type="submit" onClick={handleEdit}>
                 Edit account
               </button>
-              <button id="delete" type="button">
+              <button id="delete" type="button" onClick={deleteAccount}>
                 Delete account
               </button>
             </div>

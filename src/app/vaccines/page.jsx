@@ -85,7 +85,7 @@ export default function Vaccine() {
                         <p>{item.vaccine_name}</p>
                       </div>
                       <div>
-                        <input type="checkbox" />
+                        <FaHeart style={{marginTop: "-10px"}} />
                       </div>
                     </div>
                     <div className="publishedDate" id="publishedDateVaccine">

@@ -9,6 +9,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { host } from '@/Components/utils/Host';
 import PageTitle from '@/Components/PageTitle/PageTitle';
+import { showToast } from '@/Components/Toast/Toast';
 export default function EditForm() {
   const [dataById, setDataById] = useState([]);
   const params = useParams();
@@ -18,6 +19,7 @@ export default function EditForm() {
   const [date_of_birth, setDate_of_birth] = useState('');
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
+  const [initialData, setInitailData] = useState({});
   function getDataById() {
     axios
       .get(`${host}/child/childById/${params.id}`, {
@@ -34,6 +36,14 @@ export default function EditForm() {
         setDate_of_birth(data.date_of_birth || '');
         setWeight(data.weight || '');
         setHeight(data.height || '');
+        setInitailData({
+          first_name: data.first_name,
+          last_name: data.last_name,
+          gender: data.gender,
+          date_of_birth: data.date_of_birth,
+          weight: data.weight,
+          height: data.height,
+        });
       })
       .catch((error) => {
         Swal.fire({
@@ -45,6 +55,17 @@ export default function EditForm() {
   }
   const handleEdit = (e) => {
     e.preventDefault();
+    const isChanged =
+      first_name !== initialData.first_name ||
+      last_name !== initialData.last_name ||
+      gender !== initialData.gender ||
+      date_of_birth !== initialData.date_of_birth ||
+      weight !== initialData.weight ||
+      height !== initialData.height;
+    if (!isChanged) {
+      showToast(`You didn't change anything`, 'warning');
+      return;
+    }
     if (!first_name || !last_name || !gender || !weight || !height) {
       Swal.fire({
         icon: 'error',
