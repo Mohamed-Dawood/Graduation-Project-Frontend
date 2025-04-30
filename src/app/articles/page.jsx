@@ -1,16 +1,16 @@
-"use client";
-import "./articles.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
-import { FaHeart } from "react-icons/fa";
-import Swal from "sweetalert2";
-import PageTitle from "@/Components/PageTitle/pageTitle";
-import Spinner from "@/Components/Spinner/Spinner";
-import InputSearch from "@/Components/InputSearch/InputSearch";
-import { host } from "@/Components/utils/Host";
-import { useRouter } from "next/navigation";
+'use client';
+import './articles.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaHeart } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import PageTitle from '@/Components/PageTitle/PageTitle';
+import Spinner from '@/Components/Spinner/Spinner';
+import InputSearch from '@/Components/InputSearch/InputSearch';
+import { host } from '@/Components/utils/Host';
+import { useRouter } from 'next/navigation';
 
 export default function Articles() {
   const router = useRouter();
@@ -20,10 +20,10 @@ export default function Articles() {
   const [loading, setLoading] = useState(false);
   const [likedIds, setLikedIds] = useState([]);
   const [searchValues, setSearchValues] = useState({
-    title: "",
-    author: "",
-    tags: "",
-    category: "",
+    title: '',
+    author: '',
+    tags: '',
+    category: '',
   });
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Articles() {
     setLoading(true);
     try {
       const res = await axios.get(`${host}/article/getAll`, {
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
       const rows = res.data.data.rows || [];
@@ -46,8 +46,8 @@ export default function Articles() {
       setFilteredData(rows.filter((item) => item.isFeatured === activeTab));
     } catch (err) {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
+        icon: 'error',
+        title: 'Oops...',
         text: err.message,
       });
     } finally {
@@ -60,30 +60,29 @@ export default function Articles() {
     setLoading(true);
 
     const params = new URLSearchParams();
-    if (filters.title) params.append("title", filters.title);
-    if (filters.author) params.append("author", filters.author);
-    if (filters.tags) params.append("tags", filters.tags);
-    if (filters.category) params.append("category", filters.category);
+    if (filters.title) params.append('title', filters.title);
+    if (filters.author) params.append('author', filters.author);
+    if (filters.tags) params.append('tags', filters.tags);
+    if (filters.category) params.append('category', filters.category);
 
     const apiParams = new URLSearchParams(params);
-    apiParams.append("isFeatured", activeTab);
+    apiParams.append('isFeatured', activeTab);
 
     const visibleParams = new URLSearchParams(params);
-    router.push(`/articles?${visibleParams.toString()}`); 
+    router.push(`/articles?${visibleParams.toString()}`);
 
     try {
       const res = await axios.get(
         `${host}/article/search?${apiParams.toString()}`,
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
 
       const rows = res.data.data.rows || [];
 
-      
-      const looseMatch = (text = "", input = "") => {
+      const looseMatch = (text = '', input = '') => {
         if (!input) return true;
         text = text.toLowerCase();
         input = input.toLowerCase();
@@ -94,7 +93,7 @@ export default function Articles() {
         (item) =>
           looseMatch(item.title, filters.title) &&
           looseMatch(item.author, filters.author) &&
-          looseMatch(item.tags?.join(",") || "", filters.tags) &&
+          looseMatch(item.tags?.join(',') || '', filters.tags) &&
           looseMatch(item.category, filters.category)
       );
 
@@ -102,8 +101,8 @@ export default function Articles() {
       setFilteredData(filtered);
     } catch (err) {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
+        icon: 'error',
+        title: 'Oops...',
         text: err.message,
       });
     } finally {
@@ -113,12 +112,12 @@ export default function Articles() {
 
   const handleReset = () => {
     setSearchValues({
-      title: "",
-      author: "",
-      tags: "",
-      category: "",
+      title: '',
+      author: '',
+      tags: '',
+      category: '',
     });
-    router.push("/articles");
+    router.push('/articles');
     getArticles();
   };
 
@@ -135,8 +134,8 @@ export default function Articles() {
         <div className="buttons">
           <button
             style={{
-              backgroundColor: activeTab ? "#3640ce" : "#f6f6f6",
-              color: activeTab ? "#fff" : "#3640ce",
+              backgroundColor: activeTab ? '#3640ce' : '#f6f6f6',
+              color: activeTab ? '#fff' : '#3640ce',
             }}
             onClick={() => setActiveTab(true)}
           >
@@ -144,8 +143,8 @@ export default function Articles() {
           </button>
           <button
             style={{
-              backgroundColor: !activeTab ? "#3640ce" : "#f6f6f6",
-              color: !activeTab ? "#fff" : "#3640ce",
+              backgroundColor: !activeTab ? '#3640ce' : '#f6f6f6',
+              color: !activeTab ? '#fff' : '#3640ce',
             }}
             onClick={() => setActiveTab(false)}
           >
@@ -166,8 +165,8 @@ export default function Articles() {
                     <Image
                       src={item.image}
                       alt="Image"
-                      width={"150"}
-                      height={"80"}
+                      width={'150'}
+                      height={'80'}
                     />
                   </div>
                   <div className="card">
@@ -177,10 +176,10 @@ export default function Articles() {
                         onClick={() => handleClickHeart(item._id)}
                         style={{
                           color: likedIds.includes(item._id)
-                            ? "#3640ce"
-                            : "gray",
-                          cursor: "pointer",
-                          marginLeft: "auto",
+                            ? '#3640ce'
+                            : 'gray',
+                          cursor: 'pointer',
+                          marginLeft: 'auto',
                         }}
                       />
                     </div>
