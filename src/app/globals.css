@@ -13,6 +13,7 @@
   --fourth-color: #dfecff;
   --fifth-color: #f6f6f6;
   --section-head-color: #1a1e4c;
+  --second-background:#e1eeff:
   --text-color: #808080;
 }
 a {
@@ -89,6 +90,25 @@ input {
   text-decoration: underline wavy;
   font-style: italic;
 }
-.landing {
+.pageHeader {
+  position: relative;
+  width: fit-content;
+  margin: auto;
+  text-transform: capitalize;
+  color: var(--main-color);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    background-color: var(--main-color);
+    width: 100%;
+    height: 2px;
+  }
+}
+
+.landing,
+.journey,.articlesSection {
   padding: 2rem 0;
 }

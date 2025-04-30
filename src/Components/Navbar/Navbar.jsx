@@ -60,6 +60,13 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
+<<<<<<< HEAD
+=======
+        {/* <div className="links">
+          <RouteLink text="signin" to="/signin" />
+          <RouteLink text="signup" to="/signup" />
+        </div> */}
+>>>>>>> 2ef411d76561354871c9dc4ac57f1baa72566701
       </div>
       <div id="uls-mobile">
         <ul id="mobile-menu">

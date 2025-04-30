@@ -1,15 +1,15 @@
-"use client";
-import "./BannerDoctor.css";
-import { useEffect, useState } from "react";
-import doctorImage from "../../../assets/images/doctor/doctor.png";
-import Image from "next/image";
-import { FaHeart } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
-import axios from "axios";
-import Link from "next/link";
-import Swal from "sweetalert2";
-import PageTitle from "@/Components/PageTitle/pageTitle";
-import Spinner from "@/Components/Spinner/Spinner";
+'use client';
+import './BannerDoctor.css';
+import { useEffect, useState } from 'react';
+import doctorImage from '../../../assets/images/doctor/doctor.png';
+import Image from 'next/image';
+import { FaHeart } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa6';
+import axios from 'axios';
+import Link from 'next/link';
+import Swal from 'sweetalert2';
+import PageTitle from '@/Components/PageTitle/PageTitle.jsx';
+import Spinner from '@/Components/Spinner/Spinner';
 
 export default function Banner({ host }) {
   const [data, setData] = useState([]);
@@ -21,7 +21,7 @@ export default function Banner({ host }) {
     setLoading(true);
     axios
       .get(host, {
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       })
       .then((res) => {
@@ -29,8 +29,8 @@ export default function Banner({ host }) {
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
+          icon: 'error',
+          title: 'Oops...',
           text: `${error.message}`,
         });
       })
@@ -65,9 +65,9 @@ export default function Banner({ host }) {
                           onClick={() => handleClickHeart(item.user_id)}
                           style={{
                             color: likedIds.includes(item.user_id)
-                              ? "#3640ce"
-                              : "gray",
-                            cursor: "pointer",
+                              ? '#3640ce'
+                              : 'gray',
+                            cursor: 'pointer',
                           }}
                         />
                       </div>
@@ -75,9 +75,9 @@ export default function Banner({ host }) {
                       <div className="rate">
                         <div
                           style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "5px",
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '5px',
                           }}
                         >
                           <span>{rate[index]}</span>
