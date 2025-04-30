@@ -1,4 +1,4 @@
-import './articlesSection.css'; // Not using CSS modules
+import './articlesSection.css';
 import ArticleCard from './ArticleCard.jsx';
 import article1 from '../../assets/images/article/1.jpg';
 import article2 from '../../assets/images/article/2.jpg';
@@ -30,19 +30,23 @@ const articles = [
 
 const ArticlesSection = () => {
   return (
-    <section className="articles-section">
-      <h2 className="pageHeader">Articles</h2>
-      <div className="articles-grid">
-        {articles.map((article, index) => (
-          <ArticleCard
-            key={index}
-            title={article.title}
-            imageSrc={article.imageSrc}
-            link={article.link}
-          />
-        ))}
+    <div className="articlesSection">
+      <div className="container">
+        <section>
+          <h2 className="pageHeader">Articles</h2>
+          <div className="articles-grid">
+            {articles.map((article, index) => (
+              <ArticleCard
+                key={index}
+                title={article.title}
+                imageSrc={article.imageSrc}
+                link={article.link}
+              />
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 };
 

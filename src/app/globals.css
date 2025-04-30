@@ -109,6 +109,6 @@ input {
 }
 
 .landing,
-.journey {
+.journey,.articlesSection {
   padding: 2rem 0;
 }
