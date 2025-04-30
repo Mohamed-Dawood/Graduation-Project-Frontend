@@ -42,13 +42,13 @@ export default function Navbar() {
               <Link href={'/doctors'}>Doctors</Link>
             </li>
             <li>
-              <Link href={'/'}>Vaccinations</Link>
+              <Link href={'/vaccines'}>Vaccinations</Link>
             </li>
             <li>
-              <Link href={'/'}>Doses</Link>
+              <Link href={'/doses'}>Doses</Link>
             </li>
             <li>
-              <Link href={'/'}>Medicine</Link>
+              <Link href={'/medicine'}>Medicine</Link>
             </li>
             <li>
               <Link href={'/profile'}>Profile</Link>
@@ -60,13 +60,6 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-<<<<<<< HEAD
-=======
-        {/* <div className="links">
-          <RouteLink text="signin" to="/signin" />
-          <RouteLink text="signup" to="/signup" />
-        </div> */}
->>>>>>> 2ef411d76561354871c9dc4ac57f1baa72566701
       </div>
       <div id="uls-mobile">
         <ul id="mobile-menu">
@@ -83,31 +76,31 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href={'/'}>
+            <Link href={'/doctors'}>
               <FaUserDoctor />
               Doctors
             </Link>
           </li>
           <li>
-            <Link href={'/'}>
+            <Link href={'/vaccines'}>
               <TbVaccine />
               Vaccinations
             </Link>
           </li>
           <li>
-            <Link href={'/'}>
+            <Link href={'/doses'}>
               <TbVaccine />
               Doses
             </Link>
           </li>
           <li>
-            <Link href={'/'}>
+            <Link href={'/medicine'}>
               <TbVaccine />
               Medicine
             </Link>
           </li>
           <li>
-            <Link href={'/'}>
+            <Link href={'/profile'}>
               <CgProfile />
               Profile
             </Link>

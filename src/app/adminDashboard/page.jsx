@@ -89,7 +89,7 @@ export default function AdminDashboard() {
             </div>
             <div className="Container">
               <div>
-                <h6>Moamen Hussein</h6>
+                <h6>Moamen</h6>
                 <p>Admin</p>
               </div>
               <div>

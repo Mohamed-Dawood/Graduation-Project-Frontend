@@ -1,0 +1,101 @@
+.doctorsAdmin {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    .addDoctor {
+      width: fit-content;
+      padding: 0.625rem 1.875rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      background-color: var(--main-color);
+      color: white;
+      font-size: 1.125rem;
+    }
+    .cardContent,
+    img {
+      border-radius: 0.75rem;
+      -webkit-border-radius: 0.75rem;
+      -moz-border-radius: 0.75rem;
+      -ms-border-radius: 0.75rem;
+      -o-border-radius: 0.75rem;
+    }
+    .cardContent {
+      flex-basis: 100%;
+      background-color: var(--fifth-color);
+      padding: 0.9375rem;
+      box-shadow: -0.125rem -0.0625rem 0.3125rem 0.1875rem #ccc;
+      .cards {
+        display: flex;
+        justify-content: space-between;
+      }
+      .imageAndText {
+        position: relative;
+        display: flex;
+        gap: 1.25rem;
+        .nameAndIcone {
+          display: flex;
+          gap: 0.5rem;
+          svg {
+            margin-top: 0.3125rem;
+          }
+        }
+        .buttons {
+          display: flex;
+          gap: 1.875rem;
+          div {
+            width: 100% !important;
+            display: flex;
+            gap: 1.875rem;
+            margin-top: 1.875rem;
+            button {
+              width: 6.25rem;
+              cursor: pointer;
+              padding: 0.3125rem 0.9375rem;
+              transition: 0.2s;
+              -webkit-transition: 0.2s;
+              -moz-transition: 0.2s;
+              -ms-transition: 0.2s;
+              -o-transition: 0.2s;
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+      }
+      img {
+        width: 8.125rem;
+        height: 8.125rem;
+        margin-top: 0.3125rem;
+      }
+    }
+  }
+  .gmail {
+    a {
+      color: var(--main-color);
+      font-size: 1.375rem;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .imageAndText,
+  .cards {
+    flex-direction: column;
+  }
+  .imageAndText {
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+  .buttons {
+    flex-direction: column;
+    gap: 0.3125rem !important;
+    div {
+      margin: 0 !important;
+      margin-top: 0.625rem;
+    }
+  }
+}

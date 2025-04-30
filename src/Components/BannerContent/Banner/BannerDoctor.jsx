@@ -56,7 +56,11 @@ export default function Banner({ host }) {
                 return (
                   <div className="cardContent" key={item.user_id}>
                     <div>
-                      <Image src={doctorImage} alt="Doctor Image" />
+                      {item.image_url == null ? (
+                        <Image src={doctorImage} alt="Doctor Image" />
+                      ) : (
+                        <Image src={item.image_url} alt="Doctor Image" />
+                      )}
                     </div>
                     <div className="doctorInfo">
                       <div className="nameAndHeart">

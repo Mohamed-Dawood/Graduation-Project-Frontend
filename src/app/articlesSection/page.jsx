@@ -14,17 +14,17 @@ const articles = [
   {
     title: 'Recommended medications',
     imageSrc: article2,
-    link: '/articles',
+    link: '/medicine',
   },
   {
     title: 'General articles about Vaccination',
     imageSrc: article3,
-    link: '/articles',
+    link: '/vaccines',
   },
   {
     title: 'Advice before and after vaccination',
     imageSrc: article4,
-    link: '/articles',
+    link: '/vaccines',
   },
 ];
 

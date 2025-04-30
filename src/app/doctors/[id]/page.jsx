@@ -76,7 +76,11 @@ export default function DoctorDetails() {
             <div className="doctor">
               <div className="doctorCard">
                 <div>
-                  <Image src={doctorImage} alt="Doctor Image" />
+                  {data.image_url == null ? (
+                    <Image src={doctorImage} alt="Doctor Image" />
+                  ) : (
+                    <Image src={data.image_url} alt="Doctor Image" />
+                  )}
                 </div>
                 <div className="info">
                   <div className="nameAndHeart">
