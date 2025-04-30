@@ -1,0 +1,112 @@
+.reservation {
+  .container {
+    h3 {
+      text-align: center;
+      color: var(--main-color);
+      font-size: 1.875rem;
+    }
+    table {
+      width: 100%;
+      tr {
+        th,
+        td {
+          padding: 0.625rem 0.9375rem;
+        }
+      }
+    }
+  }
+}
+.reservation-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .cancel {
+    background-color: transparent !important;
+    button {
+      padding: 0.25rem .9375rem;
+      background-color: rgb(243, 42, 42);
+      color: white;
+      cursor: pointer;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+}
+  }
+}
+
+.reservation-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.reservation-header {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.reservation-info {
+  padding-top: 0.625rem;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  text-align: left;
+  margin-left: 1.5625rem;
+  .status {
+    background-color: #f1f1f1;
+    text-align: center;
+    width: fit-content;
+    margin-left: 1.375rem;
+    padding: 0.25rem 15px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    color: #000;
+}
+}
+
+.note-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #f1f1f1;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 0 15px;
+  opacity: 0;
+}
+
+.note-container.open {
+  max-height: 200px;
+  opacity: 1;
+  padding: 15px;
+}
+.reservation {
+  svg {
+    color: var(--main-color);
+    margin-top: 15px;
+  }
+}
+.contentCard {
+  display: flex;
+  flex-wrap: wrap;
+  p {
+    flex-basis: 50%;
+  }
+}

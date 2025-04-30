@@ -58,6 +58,19 @@
     }
   }
 }
+table {
+  text-align: center;
+  border: 1px solid var(--main-color);
+  margin-top: 0.625rem;
+  width: 100%;
+  tr {
+    th,
+    td {
+      border: 1px solid var(--main-color);
+      padding: 0.625rem 1.875rem;
+    }
+  }
+}
 @media (max-width: 870px) {
   .doctor {
     .doctorCard {
@@ -74,6 +87,14 @@
       img {
         width: 100% !important;
         height: 100% !important;
+      }
+    }
+  }
+  table {
+    tr {
+      th,
+      td {
+        padding: 0.3125rem 0.5rem;
       }
     }
   }

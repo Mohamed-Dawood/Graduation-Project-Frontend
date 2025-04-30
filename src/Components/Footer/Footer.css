@@ -1,5 +1,10 @@
 .footer {
   background-color: var(--fifth-color);
+<<<<<<< HEAD
+=======
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+>>>>>>> 182b167ea60f365286ba26852a50ccb11e6841b7
   padding: 2.5rem 0;
   .container {
     text-align: center;

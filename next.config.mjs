@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+<<<<<<< HEAD
     remotePatterns: [
       {
         protocol: 'https',
@@ -30,6 +31,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.freepik.com',
       },
+=======
+    domains: [
+      'content.presspage.com',
+      'encrypted-tbn0.gstatic.com',
+      'www.cdc.gov',
+      'www.shutterstock.com',
+      'res.cloudinary.com',
+      'media.gettyimages.com',
+      'img.freepik.com',
+      'petracarestore.com',
+      'cdn.salla.sa',
+>>>>>>> 182b167ea60f365286ba26852a50ccb11e6841b7
     ],
   },
 };

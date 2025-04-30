@@ -45,6 +45,9 @@ export default function Navbar() {
               <Link href={'/'}>Vaccinations</Link>
             </li>
             <li>
+              <Link href={'/'}>Doses</Link>
+            </li>
+            <li>
               <Link href={'/profile'}>Profile</Link>
             </li>
 

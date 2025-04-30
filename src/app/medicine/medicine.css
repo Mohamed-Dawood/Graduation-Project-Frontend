@@ -1,0 +1,23 @@
+.medicineImage {
+  border-radius: 0.75rem;
+  -webkit-border-radius: 0.75rem;
+  -moz-border-radius: 0.75rem;
+  -ms-border-radius: 0.75rem;
+  -o-border-radius: 0.75rem;
+}
+.search {
+  display: flex;
+  gap: 1.875rem;
+  margin: 1.875rem 0.625rem;
+  input {
+    flex-basis: calc((100% / 3) - 1.875rem);
+    padding: .625rem;
+    border: 1px solid var(--main-color);
+    caret-color: var(--main-color);
+  }
+}
+@media(max-width: 800px) {
+  .search {
+    flex-direction: column;
+  }
+}
