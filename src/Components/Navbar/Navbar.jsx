@@ -48,19 +48,17 @@ export default function Navbar() {
               <Link href={'/'}>Doses</Link>
             </li>
             <li>
+              <Link href={'/'}>Medicine</Link>
+            </li>
+            <li>
               <Link href={'/profile'}>Profile</Link>
             </li>
-
             <li className="bell">
               <Link href={'/'}>
                 <CiBellOn />
               </Link>
             </li>
           </ul>
-        </div>
-        <div className="links">
-          <RouteLink text="signin" to="/signin" />
-          <RouteLink text="signup" to="/signup" />
         </div>
       </div>
       <div id="uls-mobile">
@@ -87,6 +85,18 @@ export default function Navbar() {
             <Link href={'/'}>
               <TbVaccine />
               Vaccinations
+            </Link>
+          </li>
+          <li>
+            <Link href={'/'}>
+              <TbVaccine />
+              Doses
+            </Link>
+          </li>
+          <li>
+            <Link href={'/'}>
+              <TbVaccine />
+              Medicine
             </Link>
           </li>
           <li>

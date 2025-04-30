@@ -47,9 +47,6 @@ export default function MedicalDetails() {
           {Array.isArray(data.sideEffects) &&
             data.sideEffects.map((item, index) => <p className='contentDetails' key={index}>-{item}</p>)}
           <hr />
-          <p className='contentDetails'>Created At : {data.createdAt}</p>
-          <p className='contentDetails'>Updated At : {data.updatedAt}</p>
-          <hr />
           <p className='contentDetails'>Dosage : {data.dosage}</p>
           <hr />
           <p className='contentDetails'>Description : {data.description}</p>
