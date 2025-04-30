@@ -1,13 +1,11 @@
-
 .footer {
   background-color: var(--fifth-color);
-  margin-top: 1.25rem;
   padding: 2.5rem 0;
   .container {
     text-align: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    
+
     > div {
       ul {
         margin-top: 0.625rem;
