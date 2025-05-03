@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { MdVerified } from 'react-icons/md';
 import { SiGmail } from 'react-icons/si';
 import Link from 'next/link';
+import AddInfoBtn from '../addInfoBtn/AddInfoBtn';
 export default function DoctorsAdmin() {
   const [data, setData] = useState([]);
   //Start Verified Doctor
@@ -83,10 +84,7 @@ export default function DoctorsAdmin() {
     <div className="doctorsAdmin">
       <div className="container">
         <Link href={'/adminDashboard/addDoctor'}>
-          <button className="addDoctor">
-            <span>+</span>
-            <span>Add New Doctor</span>
-          </button>
+        <AddInfoBtn text="Add New Doctor" />
         </Link>
         {data.map((card) => {
           return (
@@ -115,7 +113,7 @@ export default function DoctorsAdmin() {
                     <p style={{ color: '#3640ce' }}>{card.specialization}</p>
                     <div className="buttons">
                       <div>
-                        <Link href={'/'}>
+                        <Link href={`/adminDashboard/${card.user_id}`}>
                           <button
                             style={{
                               color: '#fff',

@@ -141,7 +141,7 @@ export default function AddDoctor() {
               </select>
             </div>
           </div>
-          <button onClick={handleCreateDoctor}>Submit</button>
+          <button onClick={handleCreateDoctor} className='submit'>Submit</button>
         </form>
       </div>
     </div>

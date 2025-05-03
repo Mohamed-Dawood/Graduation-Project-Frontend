@@ -3,16 +3,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    .addDoctor {
-      width: fit-content;
-      padding: 0.625rem 1.875rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      background-color: var(--main-color);
-      color: white;
-      font-size: 1.125rem;
-    }
     .cardContent,
     img {
       border-radius: 0.75rem;

@@ -11,7 +11,7 @@ import Spinner from '@/Components/Spinner/Spinner';
 import InputSearch from '@/Components/InputSearch/InputSearch';
 import { host } from '@/Components/utils/Host';
 import { useRouter } from 'next/navigation';
-
+import articleImage from '../../assets/images/articles/articles.avif';
 export default function Articles() {
   const router = useRouter();
   const [data, setData] = useState([]);
@@ -162,12 +162,21 @@ export default function Articles() {
               filteredData.map((item) => (
                 <div key={item._id} className="cardContent">
                   <div>
-                    <Image
-                      src={item.image}
-                      alt="Image"
-                      width={'150'}
-                      height={'80'}
-                    />
+                    {item.image == null ? (
+                      <Image
+                        src={articleImage}
+                        alt="Image"
+                        width={'150'}
+                        height={'80'}
+                      />
+                    ) : (
+                      <Image
+                        src={item.image}
+                        alt="Image"
+                        width={'150'}
+                        height={'80'}
+                      />
+                    )}
                   </div>
                   <div className="card">
                     <div className="cardTitle">

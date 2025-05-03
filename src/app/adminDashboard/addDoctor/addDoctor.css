@@ -1,4 +1,4 @@
-.addDoctor {
+
   .container {
     form {
       margin: 20px 0;
@@ -19,7 +19,7 @@
         }
       }
     }
-    button {
+    .submit {
       background-color: var(--main-color);
       width: 50%;
       margin-top: 1.25rem;
@@ -37,7 +37,7 @@
       cursor: pointer;
     }
   }
-}
+
 @media(max-width: 768px) {
   form {
     .inputs {

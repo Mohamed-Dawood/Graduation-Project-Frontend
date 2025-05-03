@@ -1,5 +1,6 @@
+
+import ArticleCard from './articleCard';
 import './articlesSection.css';
-import ArticleCard from './ArticleCard';
 import article1 from '../../assets/images/article/1.jpg';
 import article2 from '../../assets/images/article/2.jpg';
 import article3 from '../../assets/images/article/3.jpg';
