@@ -38,6 +38,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.salla.sa',
       },
+      {
+        protocol: 'https',
+        hostname: 'petracarestore.com',
+      },
     ],
   },
 };

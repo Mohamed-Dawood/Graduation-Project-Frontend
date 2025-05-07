@@ -38,46 +38,46 @@ export default function UpdateDoctor() {
       });
   }
 
-  function updateDoctorInfo() {
-    const updateData = {
-      first_name: fName,
-      last_name: lName,
-      email: email,
-      phone_number: phone,
-    };
+  // function updateDoctorInfo() {
+  //   const updateData = {
+  //     first_name: fName,
+  //     last_name: lName,
+  //     email: email,
+  //     phone_number: phone,
+  //   };
 
-    axios
-      .put(`${host}/user/update/${params.updateDoctor}`, updateData, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      })
-      .then(() => {
-        showToast(`User info updated successfully`, 'success');
-      })
-      .catch((error) => {
-        showToast(`${error.message}`, 'error');
-      });
-  }
+  //   axios
+  //     .put(`${host}/user/update/${params.updateDoctor}`, updateData, {
+  //       headers: { 'Content-Type': 'application/json' },
+  //       withCredentials: true,
+  //     })
+  //     .then(() => {
+  //       showToast(`User info updated successfully`, 'success');
+  //     })
+  //     .catch((error) => {
+  //       showToast(`${error.message}`, 'error');
+  //     });
+  // }
 
-  function updateLicenceAndSpecialization() {
-    const updateData = {
-      user_id: params.updateDoctor,
-      specialization,
-      license_number: licenseNumber,
-    };
+  // function updateLicenceAndSpecialization() {
+  //   const updateData = {
+  //     user_id: params.updateDoctor,
+  //     specialization,
+  //     license_number: licenseNumber,
+  //   };
 
-    axios
-      .put(`${host}/doctor/update/${params.updateDoctor}`, updateData, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      })
-      .then(() => {
-        showToast(`Doctor info updated successfully`, 'success');
-      })
-      .catch((error) => {
-        showToast(`${error.message}`, 'error');
-      });
-  }
+  //   axios
+  //     .put(`${host}/doctor/update/${params.updateDoctor}`, updateData, {
+  //       headers: { 'Content-Type': 'application/json' },
+  //       withCredentials: true,
+  //     })
+  //     .then(() => {
+  //       showToast(`Doctor info updated successfully`, 'success');
+  //     })
+  //     .catch((error) => {
+  //       showToast(`${error.message}`, 'error');
+  //     });
+  // }
   const updateDoctor = async (e) => {
     e.preventDefault();
     const isUserDataChanged =

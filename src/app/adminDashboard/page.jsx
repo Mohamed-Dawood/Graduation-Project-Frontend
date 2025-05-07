@@ -12,8 +12,11 @@ import Image from 'next/image';
 import PageTitle from '@/Components/PageTitle/PageTitle';
 import MainDashboard from '@/Components/AdminDashboard/mainDashboard/page';
 import DoctorsAdmin from '@/Components/AdminDashboard/doctors/Doctors';
+import ArticlesDashboard from '@/Components/AdminDashboard/articles/ArticlesDashboard';
+import Medicines from '@/Components/AdminDashboard/medicines/Medicines';
+import Vaccines from '@/Components/AdminDashboard/vaccines/Vaccines';
 export default function AdminDashboard() {
-  const [active, setActive] = useState('main');
+  const [active, setActive] = useState('doctors');
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const toggleSidebar = () => {
     setSidebarVisible((prev) => !prev);
@@ -28,7 +31,7 @@ export default function AdminDashboard() {
         <FaBars id="bars" onClick={toggleSidebar} />
         <div className={`sidebar ${sidebarVisible ? 'show' : ''}`}>
           <ul>
-            <li
+            {/* <li
               onClick={() => handleNavClick('main')}
               className={active == 'main' ? 'active' : ''}
             >
@@ -36,7 +39,7 @@ export default function AdminDashboard() {
                 <FaVectorSquare />
               </span>
               <span>Main</span>
-            </li>
+            </li> */}
             <li
               onClick={() => handleNavClick('doctors')}
               className={active == 'doctors' ? 'active' : ''}
@@ -76,7 +79,7 @@ export default function AdminDashboard() {
           </ul>
         </div>
         <div className="content">
-          <div className="adminAndPhoto">
+          {/* <div className="adminAndPhoto">
             <div >{active === 'main' && <PageTitle text="Main" />}</div>
             <div
               style={{
@@ -96,9 +99,12 @@ export default function AdminDashboard() {
                 <Image src={adminImage} alt="adminImage" />
               </div>
             </div>
-          </div>
-          {active === 'main' && <MainDashboard />}
+          </div> */}
+          {/* {active === 'main' && <MainDashboard />} */}
           {active === "doctors" && <DoctorsAdmin />}
+          {active === "articles" && <ArticlesDashboard />}
+          {active === "medicine" && <Medicines />}
+          {active === "vaccines" && <Vaccines />}
         </div>
       </div>
     </div>

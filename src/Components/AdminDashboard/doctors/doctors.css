@@ -1,4 +1,7 @@
-.doctorsAdmin {
+.doctorsAdmin,
+.articlesDashboard,
+.medicineDashboard,
+.vaccines {
   .container {
     display: flex;
     flex-direction: column;

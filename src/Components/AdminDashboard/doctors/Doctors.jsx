@@ -84,7 +84,7 @@ export default function DoctorsAdmin() {
     <div className="doctorsAdmin">
       <div className="container">
         <Link href={'/adminDashboard/addDoctor'}>
-        <AddInfoBtn text="Add New Doctor" />
+          <AddInfoBtn text="Add New Doctor" />
         </Link>
         {data.map((card) => {
           return (
