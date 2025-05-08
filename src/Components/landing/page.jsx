@@ -13,7 +13,7 @@ function Landing() {
         <div className="text">
           <h2>
             Connect with the best doctors and get excellent{' '}
-            <span className="textUnderLine">health care</span>
+            <span className="wavy-text">health care</span>
           </h2>
           <p>
             To ensure the health and safety of your child, we are here to

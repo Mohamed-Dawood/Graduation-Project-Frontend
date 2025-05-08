@@ -77,12 +77,12 @@ function page() {
           <small>
             <Link href="/forgot-password">Forgot password?</Link>
           </small>
-          <Button text="sign in" bgColor="--main-color" type="submit"  />
+          <Button text="sign in" bgColor="--main-color" type="submit" />
           <p>Or register using</p>
           <Socials />
           <span>
             Don't have an account?{' '}
-            <Link href="sign-up">Create a new account</Link>
+            <Link href="signup">Create a new account</Link>
           </span>
         </form>
         <div className="image">
