@@ -71,7 +71,7 @@ export default function AddChild() {
   };
 
   return (
-    <div className="addChild">
+    <div>
       <div className="container">
         <div className="form">
           <div>
@@ -79,7 +79,7 @@ export default function AddChild() {
               <PageTitle text="Add Child" />
             </div>
             <form>
-              <div className="content">
+              <div className="content addChildContent">
                 <div>
                   <label>First Name</label>
                   <br />
@@ -115,7 +115,7 @@ export default function AddChild() {
                   />
                 </div>
               </div>
-              <div className="content">
+              <div className="content addChildContent">
                 <div>
                   <label>Gender</label>
                   <br />
@@ -141,7 +141,7 @@ export default function AddChild() {
                   />
                 </div>
               </div>
-              <div className="content">
+              <div className="content addChildContent">
                 <div>
                   <label>Weight</label>
                   <br />

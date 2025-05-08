@@ -10,7 +10,6 @@ const cairoFont = Cairo({
   subsets: ['latin'],
 });
 
-
 export default function Layout({ children }) {
   let pathname = usePathname();
   const hiddenRoutes = [
@@ -19,6 +18,7 @@ export default function Layout({ children }) {
     '/logout',
     '/404',
     '/not-found',
+    '/signup',
   ];
 
   const shouldHideComponents = hiddenRoutes.includes(pathname);

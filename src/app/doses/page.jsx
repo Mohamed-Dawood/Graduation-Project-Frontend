@@ -9,35 +9,43 @@ import Spinner from '@/Components/Spinner/Spinner';
 import doseImage from '../../assets/images/dose/dose.jpg';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 export default function Doses() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`${host}/dose/getAll`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-      })
-      .then((response) => {
-        // console.log(response.data.data.rows)
-        setData(response.data.data.rows);
-      })
-      .catch((error) => {
-        // console.log( error.message)
-        showToast(`${error.message}`, 'error');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    let token = localStorage.getItem('Token');
+    if (token) {
+      axios
+        .get(`${host}/dose/getAll`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        })
+        .then((response) => {
+          // console.log(response.data.data.rows)
+          setData(response.data.data.rows);
+        })
+        .catch((error) => {
+          // console.log( error.message)
+          showToast(`${error.message}`, 'error');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      showToast(`You are not logged in.`, "warning");
+      router.push('/signin');
+    }
   }, []);
   return (
     <div className="allDoses">
       <div className="container">
         <PageTitle text="Doses" />
-        <input type='search' placeholder='Search...' />
+        <input type="search" placeholder="Search..." />
         {loading ? (
           <Spinner />
         ) : (

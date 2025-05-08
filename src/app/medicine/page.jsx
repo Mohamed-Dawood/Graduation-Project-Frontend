@@ -10,6 +10,8 @@ import Spinner from '@/Components/Spinner/Spinner';
 import Image from 'next/image';
 import { FaHeart } from 'react-icons/fa';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 export default function Medicine() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,6 +19,8 @@ export default function Medicine() {
   const [searchName, setSearchName] = useState('');
   const [searchCategory, setSearchCategory] = useState('');
   const [searchSideEffect, setSearchSideEffect] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
   const fetchAllData = async () => {
     try {
       setLoading(true);
@@ -34,6 +38,7 @@ export default function Medicine() {
       setLoading(false);
     }
   };
+
   const searchData = async () => {
     try {
       setSearching(true);
@@ -59,10 +64,21 @@ export default function Medicine() {
       setSearching(false);
     }
   };
+
   useEffect(() => {
-    fetchAllData();
+    const token = localStorage.getItem('Token');
+    if (token) {
+      setIsLoggedIn(true);
+      fetchAllData();
+    } else {
+      showToast('You are not logged in.', 'warning');
+      router.push('/signin');
+    }
   }, []);
+
   useEffect(() => {
+    if (!isLoggedIn) return;
+
     const delayDebounce = setTimeout(() => {
       if (!searchName && !searchCategory && !searchSideEffect) {
         fetchAllData();
@@ -70,35 +86,39 @@ export default function Medicine() {
         searchData();
       }
     }, 500);
+
     return () => clearTimeout(delayDebounce);
-  }, [searchName, searchCategory, searchSideEffect]);
+  }, [searchName, searchCategory, searchSideEffect, isLoggedIn]);
+
   return (
     <div className="medicine">
       <div className="container">
         <PageTitle text="Medicine" />
-        <div className="search">
-          <input
-            type="search"
-            placeholder="Search By Name"
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
-          />
-          <input
-            type="search"
-            placeholder="Search By Category"
-            value={searchCategory}
-            onChange={(e) => setSearchCategory(e.target.value)}
-          />
-          <input
-            type="search"
-            placeholder="Search By Side Effect"
-            value={searchSideEffect}
-            onChange={(e) => setSearchSideEffect(e.target.value)}
-          />
-        </div>
+        {isLoggedIn && (
+          <div className="search">
+            <input
+              type="search"
+              placeholder="Search By Name"
+              value={searchName}
+              onChange={(e) => setSearchName(e.target.value)}
+            />
+            <input
+              type="search"
+              placeholder="Search By Category"
+              value={searchCategory}
+              onChange={(e) => setSearchCategory(e.target.value)}
+            />
+            <input
+              type="search"
+              placeholder="Search By Side Effect"
+              value={searchSideEffect}
+              onChange={(e) => setSearchSideEffect(e.target.value)}
+            />
+          </div>
+        )}
         {loading ? (
           <Spinner />
-        ) : (
+        ) : isLoggedIn ? (
           <div className="content">
             {searching ? (
               <p className="searching">Searching...</p>
@@ -107,7 +127,7 @@ export default function Medicine() {
                 <div key={item._id} className="cardContent">
                   <div>
                     <Image
-                      src={item.image || medicineImage}
+                      src={item.image || '/default-medicine.png'}
                       alt="Medicine Image"
                       width={150}
                       height={80}
@@ -117,15 +137,13 @@ export default function Medicine() {
                   <div className="card">
                     <div className="cardTitle">
                       <p>{item.name}</p>
-                      <FaHeart
-                        style={{
-                          color: '#3640ce',
-                        }}
-                      />
+                      <FaHeart style={{ color: '#3640ce' }} />
                     </div>
                     <div className="publishedDate">
                       <p>Category : {item.category}</p>
-                      <Link href={`/medicine/medicineById/${item._id}`}>Read More</Link>
+                      <Link href={`/medicine/medicineById/${item._id}`}>
+                        Read More
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -134,7 +152,7 @@ export default function Medicine() {
               <p className="notFound">No medicines found.</p>
             )}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

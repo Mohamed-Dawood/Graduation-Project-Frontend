@@ -102,7 +102,7 @@ export default function PersonalAccount() {
       .then((response) => {
         // console.log(response);
         showToast(`You Deleted Your Account Successfuly`, 'success');
-        router.push('/signin');
+        router.push('/signup');
       })
       .catch((error) => {
         showToast(`${error.message}, "error`);

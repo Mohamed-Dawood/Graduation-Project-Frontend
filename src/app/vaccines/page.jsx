@@ -10,33 +10,41 @@ import Spinner from '@/Components/Spinner/Spinner';
 import Link from 'next/link';
 import vaccineImage from '../../assets/images/vaccine/vaccine.png';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 export default function Vaccine() {
   const [activeTab, setActiveTab] = useState(true);
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`${host}/vaccine/getAll`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-      })
-      .then((response) => {
-        const rows = response.data.data.rows || [];
-        // console.log(rows);
-        setData(rows);
-        setFilterData(rows.filter((item) => item.is_mandatory === activeTab));
-      })
-      .catch((error) => {
-        // console.log(error.message)
-        showToast(`${error.message}`, 'error');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    let token = localStorage.getItem('Token');
+    if (token) {
+      axios
+        .get(`${host}/vaccine/getAll`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        })
+        .then((response) => {
+          const rows = response.data.data.rows || [];
+          // console.log(rows);
+          setData(rows);
+          setFilterData(rows.filter((item) => item.is_mandatory === activeTab));
+        })
+        .catch((error) => {
+          // console.log(error.message)
+          showToast(`${error.message}`, 'error');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      showToast(`You are not logged in.`, 'warning');
+      router.push('/signin');
+    }
   }, []);
   useEffect(() => {
     setFilterData(data.filter((item) => item.is_mandatory === activeTab));
@@ -85,12 +93,14 @@ export default function Vaccine() {
                         <p>{item.vaccine_name}</p>
                       </div>
                       <div>
-                        <FaHeart style={{marginTop: "-10px"}} />
+                        <FaHeart style={{ marginTop: '-10px' }} />
                       </div>
                     </div>
                     <div className="publishedDate" id="publishedDateVaccine">
                       <p>{`Doses_required : ${item.doses_required}`}</p>
-                      <Link href={`/vaccines/${item.vaccine_id}`}>Read More</Link>
+                      <Link href={`/vaccines/${item.vaccine_id}`}>
+                        Read More
+                      </Link>
                     </div>
                   </div>
                 </div>

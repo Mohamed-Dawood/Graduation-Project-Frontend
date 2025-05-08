@@ -46,7 +46,7 @@ export default function Vaccines() {
   return (
     <div className="vaccines">
       <div className="container">
-        <Link href={'/'}>
+        <Link href={'/adminDashboard/addViccines'}>
           <AddInfoBtn text="New Vaccine" />
         </Link>
         {data.map((card) => {
@@ -68,7 +68,7 @@ export default function Vaccines() {
                     {/* <p style={{ color: '#3640ce' }}>{card.specialization}</p> */}
                     <div className="buttons">
                       <div>
-                        <Link href={`/`}>
+                        <Link href={`/adminDashboard/updateVaccine/${card.vaccine_id}`}>
                           <button
                             style={{
                               color: '#fff',

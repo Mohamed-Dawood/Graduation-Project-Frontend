@@ -10,33 +10,42 @@ import Link from 'next/link';
 import Swal from 'sweetalert2';
 import PageTitle from '@/Components/PageTitle/PageTitle.jsx';
 import Spinner from '@/Components/Spinner/Spinner';
+import { showToast } from '@/Components/Toast/Toast';
+import { useRouter } from 'next/navigation';
 
 export default function Banner({ host }) {
   const [data, setData] = useState([]);
   const [likedIds, setLikedIds] = useState([]);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   //============== Rate =======================
   const rate = [4.2, 3.3, 2.1, 3.4, 2.8, 4.7, 3.4, 2.7, 3.9, 2.2];
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(host, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      })
-      .then((res) => {
-        setData(res.data.data.rows);
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: `${error.message}`,
+    let token = localStorage.getItem('Token');
+    if (token) {
+      axios
+        .get(host, {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        })
+        .then((res) => {
+          setData(res.data.data.rows);
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+          });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    } else {
+      showToast(`You are not logged in.`, 'warning');
+      router.push('/signin');
+    }
   }, [host]);
   const handleClickHeart = (id) => {
     setLikedIds((prev) =>

@@ -8,7 +8,7 @@ import { MdPersonAddAlt1 } from 'react-icons/md';
 import { CiLogin } from 'react-icons/ci';
 import { FaRegEdit } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PersonalAccount from '@/Components/profile/personalAccount/PersonalAccount';
 import Children from '@/Components/profile/children/Children';
 import AddChild from '@/Components/profile/addChild/AddChild';
@@ -17,9 +17,22 @@ import axios from 'axios';
 import { host } from '@/Components/utils/Host';
 import { showToast } from '@/Components/Toast/Toast';
 import { useRouter } from 'next/navigation';
+
 export default function Profile() {
   const [data, setData] = useState('personalAccount');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('Token');
+    if (!token) {
+      showToast(`You are not logged in.`, 'warning');
+      router.push('/signin'); // توجيه المستخدم لصفحة تسجيل الدخول
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const handleLogOut = () => {
     axios
       .get(`${host}/Auth/logout`, {
@@ -28,8 +41,7 @@ export default function Profile() {
         },
         withCredentials: true,
       })
-      .then((response) => {
-        // console.log(response);
+      .then(() => {
         showToast(`You Logged Out Successfuly`, 'success');
         router.push('/signin');
       })
@@ -37,6 +49,9 @@ export default function Profile() {
         showToast(`${error.message}`, 'error');
       });
   };
+
+  if (!isAuthenticated) return null;
+
   return (
     <div>
       <div className="container">
@@ -45,7 +60,7 @@ export default function Profile() {
             <ul>
               <li
                 onClick={() => setData('personalAccount')}
-                className={data == 'personalAccount' ? 'active' : ''}
+                className={data === 'personalAccount' ? 'active' : ''}
               >
                 <div className="iconAndText">
                   <IoIosSettings />
@@ -57,7 +72,7 @@ export default function Profile() {
               </li>
               <li
                 onClick={() => setData('notification')}
-                className={data == 'notification' ? 'active' : ''}
+                className={data === 'notification' ? 'active' : ''}
               >
                 <div className="iconAndText">
                   <CiBellOn />
@@ -69,7 +84,7 @@ export default function Profile() {
               </li>
               <li
                 onClick={() => setData('addChild')}
-                className={data == 'addChild' ? 'active' : ''}
+                className={data === 'addChild' ? 'active' : ''}
               >
                 <div className="iconAndText">
                   <MdPersonAddAlt1 />
@@ -81,7 +96,7 @@ export default function Profile() {
               </li>
               <li
                 onClick={() => setData('children')}
-                className={data == 'children' ? 'active' : ''}
+                className={data === 'children' ? 'active' : ''}
               >
                 <div className="iconAndText">
                   <MdPersonAddAlt1 />
@@ -93,7 +108,7 @@ export default function Profile() {
               </li>
               <li
                 onClick={() => setData('reservation')}
-                className={data == 'reservation' ? 'active' : ''}
+                className={data === 'reservation' ? 'active' : ''}
               >
                 <div className="iconAndText">
                   <FaRegCalendarAlt />
@@ -114,10 +129,10 @@ export default function Profile() {
               </li>
             </ul>
           </div>
-          {data == 'personalAccount' && <PersonalAccount />}
-          {data == 'children' && <Children icon={<FaRegEdit />} />}
-          {data == 'addChild' && <AddChild />}
-          {data == 'reservation' && <Reservation />}
+          {data === 'personalAccount' && <PersonalAccount />}
+          {data === 'children' && <Children icon={<FaRegEdit />} />}
+          {data === 'addChild' && <AddChild />}
+          {data === 'reservation' && <Reservation />}
         </div>
       </div>
     </div>
