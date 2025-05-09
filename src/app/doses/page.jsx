@@ -63,7 +63,7 @@ export default function Doses() {
       <div className="container">
         <PageTitle text="Doses" />
         <input
-          type="search"
+          type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

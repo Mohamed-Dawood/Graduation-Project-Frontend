@@ -31,34 +31,36 @@ export default function PersonalAccount() {
       router.push('/signin');
       return;
     }
-    axios
-      .get(`${host}/user/userById/${Id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-      })
-      .then((response) => {
-        const user = response.data.data.rows[0];
-        setFirstName(user.first_name || '');
-        setLastName(user.last_name || '');
-        setEmail(user.email || '');
-        setPhone(user.phone_number || '');
-        setPassword(user.password || '');
-        setInitialData({
-          first_name: user.first_name,
-          last_name: user.last_name,
-          email: user.email,
-          phone_number: user.phone_number,
+    if (token) {
+      axios
+        .get(`${host}/user/userById/${Id}`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        })
+        .then((response) => {
+          const user = response.data.data.rows[0];
+          setFirstName(user.first_name || '');
+          setLastName(user.last_name || '');
+          setEmail(user.email || '');
+          setPhone(user.phone_number || '');
+          setPassword(user.password || '');
+          setInitialData({
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            phone_number: user.phone_number,
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+          });
         });
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: `${error.message}`,
-        });
-      });
+    }
   }
   // End Get Data With ID
 

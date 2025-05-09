@@ -114,7 +114,7 @@ export default function Medicine() {
         {isLoggedIn && (
           <div className="search">
             <input
-              type="search"
+              type="text"
               placeholder="Search By Name"
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
