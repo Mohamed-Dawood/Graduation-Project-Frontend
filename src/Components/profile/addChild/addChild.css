@@ -38,6 +38,9 @@
 }
 #addBtn {
   width: 100% !important;
+  display: flex;
+  justify-content: center;
+  margin-right: 1.875rem;
 } 
 
 /* .addChildContent {

@@ -20,7 +20,15 @@ export default function Medicine() {
   const [searchCategory, setSearchCategory] = useState('');
   const [searchSideEffect, setSearchSideEffect] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [likedIds, setLikedIds] = useState([]);
   const router = useRouter();
+
+  const handleClickHeart = (id) => {
+    setLikedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
   const fetchAllData = async () => {
     try {
       setLoading(true);
@@ -30,7 +38,7 @@ export default function Medicine() {
         },
         withCredentials: true,
       });
-      const rows = response.data.data.rows;
+      const rows = response?.data?.data?.rows || [];
       setData(rows);
     } catch (error) {
       showToast(`${error.message}`, 'error');
@@ -40,8 +48,14 @@ export default function Medicine() {
   };
 
   const searchData = async () => {
+    if (!searchName && !searchCategory && !searchSideEffect) {
+      showToast('Please enter something to search.', 'warning');
+      return; 
+    }
+
     try {
       setSearching(true);
+
       const response = await axios.get(`${host}/medicine/search`, {
         params: {
           name: searchName || undefined,
@@ -53,10 +67,13 @@ export default function Medicine() {
         },
         withCredentials: true,
       });
-      const rows = response.data.data.rows;
+
+      const rows = response?.data?.data?.rows || [];
+
       setData(rows);
+
       if (rows.length === 0) {
-        showToast('No medicines found matching your search.', 'info');
+        showToast('No medicines found matching your search.', 'warning');
       }
     } catch (error) {
       showToast(`${error.message}`, 'error');
@@ -137,7 +154,16 @@ export default function Medicine() {
                   <div className="card">
                     <div className="cardTitle">
                       <p>{item.name}</p>
-                      <FaHeart style={{ color: '#3640ce' }} />
+                      <FaHeart
+                        onClick={() => handleClickHeart(item._id)}
+                        style={{
+                          marginTop: '-10px',
+                          color: likedIds.includes(item._id)
+                            ? '#3640ce'
+                            : 'gray',
+                          cursor: 'pointer',
+                        }}
+                      />
                     </div>
                     <div className="publishedDate">
                       <p>Category : {item.category}</p>

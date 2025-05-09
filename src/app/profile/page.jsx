@@ -27,7 +27,7 @@ export default function Profile() {
     const token = localStorage.getItem('Token');
     if (!token) {
       showToast(`You are not logged in.`, 'warning');
-      router.push('/signin'); // توجيه المستخدم لصفحة تسجيل الدخول
+      router.push('/signin'); 
     } else {
       setIsAuthenticated(true);
     }

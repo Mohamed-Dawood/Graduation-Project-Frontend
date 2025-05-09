@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { host } from '@/Components/utils/Host';
 import PageTitle from '@/Components/PageTitle/PageTitle';
 import { showToast } from '@/Components/Toast/Toast';
+
 export default function EditForm() {
   const [dataById, setDataById] = useState([]);
   const params = useParams();
@@ -20,6 +21,7 @@ export default function EditForm() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [initialData, setInitailData] = useState({});
+
   function getDataById() {
     axios
       .get(`${host}/child/childById/${params.id}`, {
@@ -53,6 +55,7 @@ export default function EditForm() {
         });
       });
   }
+
   const handleEdit = (e) => {
     e.preventDefault();
     const isChanged =
@@ -110,9 +113,17 @@ export default function EditForm() {
         });
       });
   };
+
+  const preventNumbers = (e) => {
+    if (/[0-9]/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   useEffect(() => {
     getDataById();
   }, []);
+
   return (
     <div>
       <div className="container">
@@ -126,32 +137,22 @@ export default function EditForm() {
                   <label>First Name</label>
                   <br />
                   <input
-                    pattern="[A-Za-z]"
                     type="text"
                     placeholder="First Name"
                     onChange={(e) => setFirst_name(e.target.value)}
                     value={first_name}
-                    onKeyPress={(e) => {
-                      if (!/[a-zA-Z]/.test(e.key)) {
-                        e.preventDefault();
-                      }
-                    }}
+                    onKeyPress={preventNumbers} 
                   />
                 </div>
                 <div>
                   <label>Last Name</label>
                   <br />
                   <input
-                    pattern="[A-Za-z]"
                     type="text"
                     placeholder="Last Name"
                     onChange={(e) => setLast_name(e.target.value)}
                     value={last_name}
-                    onKeyPress={(e) => {
-                      if (!/[a-zA-Z]/.test(e.key)) {
-                        e.preventDefault();
-                      }
-                    }}
+                    onKeyPress={preventNumbers}
                   />
                 </div>
               </div>
@@ -159,16 +160,13 @@ export default function EditForm() {
                 <div>
                   <label>Gender</label>
                   <br />
-                  <select onChange={(e) => setGender(e.target.value)}>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                  {/* <input
-                    type="text"
-                    placeholder="Gender"
+                  <select
                     onChange={(e) => setGender(e.target.value)}
                     value={gender}
-                  /> */}
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 </div>
                 <div>
                   <label>Date</label>
@@ -186,7 +184,7 @@ export default function EditForm() {
                   <label>Weight</label>
                   <br />
                   <input
-                    type="text"
+                    type="number"
                     placeholder="Weight"
                     onChange={(e) => setWeight(e.target.value)}
                     value={weight}
@@ -196,7 +194,7 @@ export default function EditForm() {
                   <label>Height</label>
                   <br />
                   <input
-                    type="text"
+                    type="number"
                     placeholder="Height"
                     onChange={(e) => setHeight(e.target.value)}
                     value={height}

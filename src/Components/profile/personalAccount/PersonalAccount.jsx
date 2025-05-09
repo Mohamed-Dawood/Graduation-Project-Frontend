@@ -1,16 +1,18 @@
+'use client';
 import './personalAccount.css';
 import { CiUser } from 'react-icons/ci';
 import { MdEmail } from 'react-icons/md';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { host } from '@/Components/utils/Host';
 import PageTitle from '@/Components/PageTitle/PageTitle';
 import { showToast } from '@/Components/Toast/Toast';
 import { useRouter } from 'next/navigation';
+
 export default function PersonalAccount() {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
@@ -18,9 +20,17 @@ export default function PersonalAccount() {
   const [phone_number, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [initialdata, setInitialData] = useState({});
-  //Start get data By Id
+  const router = useRouter();
+
+  // Start get data By Id
   function getDataById() {
     const Id = localStorage.getItem('Id');
+    let token = localStorage.getItem('Token');
+    if (!token) {
+      showToast('You Are Not Logged In', 'warning');
+      router.push('/signin');
+      return;
+    }
     axios
       .get(`${host}/user/userById/${Id}`, {
         headers: {
@@ -50,9 +60,9 @@ export default function PersonalAccount() {
         });
       });
   }
-  //End Get Data With ID
+  // End Get Data With ID
 
-  //Start Handle Edit
+  // Start Handle Edit
   const handleEdit = (e) => {
     e.preventDefault();
     const Id = localStorage.getItem('Id');
@@ -79,18 +89,18 @@ export default function PersonalAccount() {
         withCredentials: true,
       })
       .then((response) => {
-        // console.log(response);
-        showToast(`Updated Your Account Successfuly`, 'success');
+        showToast(`Updated Your Account Successfully`, 'success');
       })
       .catch((error) => {
         showToast(`${error.message}`, 'error');
       });
   };
-  //End Handle Edit
-  const router = useRouter();
-  //Start Delete Account
+  // End Handle Edit
+
+  // Start Delete Account
   const deleteAccount = (e) => {
     e.preventDefault();
+    localStorage.removeItem('Token');
     const Id = localStorage.getItem('Id');
     axios
       .delete(`${host}/user/userById/${Id}`, {
@@ -100,17 +110,17 @@ export default function PersonalAccount() {
         withCredentials: true,
       })
       .then((response) => {
-        // console.log(response);
-        showToast(`You Deleted Your Account Successfuly`, 'success');
+        showToast(`You Deleted Your Account Successfully`, 'success');
         router.push('/signup');
       })
       .catch((error) => {
-        showToast(`${error.message}, "error`);
+        showToast(`${error.message}`, 'error');
       });
   };
-  //End Delete Account
+  // End Delete Account
+
   useEffect(() => {
-    getDataById();
+    getDataById(); // Get data when the component loads
   }, []);
 
   return (

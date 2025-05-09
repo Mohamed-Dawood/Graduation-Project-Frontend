@@ -8,8 +8,10 @@ import Swal from 'sweetalert2';
 import { MdDelete } from 'react-icons/md';
 import { host } from '@/Components/utils/Host';
 import PageTitle from '@/Components/PageTitle/PageTitle';
+
 export default function Children(props) {
   const [data, setData] = useState([]);
+
   function getChildren() {
     axios
       .get(`${host}/child/myChildren`, {
@@ -19,16 +21,42 @@ export default function Children(props) {
         withCredentials: true,
       })
       .then((response) => {
-        setData(response.data.data.rows);
+        const children = response?.data?.data?.rows;
+        if (Array.isArray(children)) {
+          setData(children);
+          if (children.length === 0) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'No children found ⚠️',
+              text: 'You have not added any children yet.',
+            });
+          }
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Data Error',
+            text: 'Unexpected data format.',
+          });
+        }
       })
       .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: `${error.message}`,
-        });
+        if (error.response?.status === 500) {
+          setData([]);
+          Swal.fire({
+            icon: 'warning',
+            title: 'No children found ⚠️',
+            text: 'You have not added any children yet.',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+          });
+        }
       });
   }
+
   const handleDelete = (id) => {
     axios
       .delete(`${host}/child/childById/${id}`, {
@@ -46,9 +74,11 @@ export default function Children(props) {
         getChildren();
       });
   };
+
   useEffect(() => {
     getChildren();
   }, []);
+
   return (
     <div>
       <div className="container">
@@ -57,7 +87,11 @@ export default function Children(props) {
           <div className="divContent">
             {data.map((item) => {
               return (
-                <div className="contentInformation" key={item.child_id} style={{marginTop: "15px"}}>
+                <div
+                  className="contentInformation"
+                  key={item.child_id}
+                  style={{ marginTop: '15px' }}
+                >
                   <div className="content">
                     <Link href={`profile/${item.child_id}`}>
                       <div className="infoAndImage">

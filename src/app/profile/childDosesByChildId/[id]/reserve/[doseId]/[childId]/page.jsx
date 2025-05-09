@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import './reserve.css';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import { host } from '@/Components/utils/Host';
 import { showToast } from '@/Components/Toast/Toast';
@@ -15,6 +15,7 @@ const Reserve = () => {
   const [time, setTime] = useState('');
   const [tableDoctor, setTableDoctor] = useState([]);
   const [appointments, setAppointments] = useState([]);
+  const router = useRouter();
   function getDoctorAppointments(doctorId) {
     axios
       .get(`${host}/doctor/Appointments/${doctorId}`, {
@@ -84,6 +85,7 @@ const Reserve = () => {
       })
       .then((response) => {
         showToast('Action completed successfully!', 'success');
+        router.push("/profile")
       })
       .catch((error) => {
         showToast(`${error.message}`, 'error');
@@ -152,7 +154,10 @@ const Reserve = () => {
                   </table>
                 </>
               )}
-              <input type="date" onChange={(e) => setSelectedDay(e.target.value)} />
+              <input
+                type="date"
+                onChange={(e) => setSelectedDay(e.target.value)}
+              />
               <input type="time" onChange={(e) => setTime(e.target.value)} />
               <button className="submit" onClick={postDataReverse}>
                 Submit

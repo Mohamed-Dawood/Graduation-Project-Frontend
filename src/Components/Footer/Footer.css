@@ -2,7 +2,7 @@
   background-color: var(--fifth-color);
   padding-top: 2.5rem;
   padding: 2.5rem 0;
-
+  margin-top: 1.875rem;
   .container {
     text-align: center;
     display: grid;

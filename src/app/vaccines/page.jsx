@@ -16,7 +16,13 @@ export default function Vaccine() {
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [likedIds, setLikedIds] = useState([]);
   const router = useRouter();
+  const handleClickHeart = (id) => {
+    setLikedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
   useEffect(() => {
     setLoading(true);
     let token = localStorage.getItem('Token');
@@ -93,7 +99,16 @@ export default function Vaccine() {
                         <p>{item.vaccine_name}</p>
                       </div>
                       <div>
-                        <FaHeart style={{ marginTop: '-10px' }} />
+                        <FaHeart
+                          onClick={() => handleClickHeart(item.vaccine_id)}
+                          style={{
+                            marginTop: "-10px",
+                            color: likedIds.includes(item.vaccine_id)
+                              ? '#3640ce'
+                              : 'gray',
+                            cursor: 'pointer',
+                          }}
+                        />
                       </div>
                     </div>
                     <div className="publishedDate" id="publishedDateVaccine">

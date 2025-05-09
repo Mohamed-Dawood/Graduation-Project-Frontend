@@ -7,9 +7,11 @@ import { FaPlusSquare } from 'react-icons/fa';
 import React from 'react';
 import { FaArrowDownLong } from 'react-icons/fa6';
 import { FaMinus } from 'react-icons/fa';
+
 export default function Reservation() {
   const [data, setData] = useState([]);
   const [openRow, setOpenRow] = useState(null);
+
   useEffect(() => {
     axios
       .get(`${host}/reservation/myReservations`, {
@@ -17,15 +19,30 @@ export default function Reservation() {
         withCredentials: true,
       })
       .then((response) => {
-        setData(response.data.data.rows);
+        const reservations = response.data.data.rows;
+        if (Array.isArray(reservations)) {
+          setData(reservations);
+          if (reservations.length === 0) {
+            showToast('No Reservations', 'warning');
+          }
+        } else {
+          showToast('Unexpected response format', 'error');
+        }
       })
       .catch((error) => {
-        showToast(`${error.message}`, 'error');
+        if (error.response.status === 500) {
+          setData([]);
+          showToast('No Reservations', 'warning');
+        } else {
+          showToast(`${error.message}`, 'error');
+        }
       });
   }, []);
+
   const toggleRow = (id) => {
     setOpenRow(openRow === id ? null : id);
   };
+
   return (
     <div className="reservation">
       <div className="container">
