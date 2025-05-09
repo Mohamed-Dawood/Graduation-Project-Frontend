@@ -32,16 +32,17 @@ export default function Children(props) {
             });
           }
         } else {
+          setData([]);
           Swal.fire({
-            icon: 'error',
-            title: 'Data Error',
-            text: 'Unexpected data format.',
+            icon: 'warning',
+            title: 'No children found ⚠️',
+            text: 'You have not added any children yet.',
           });
         }
       })
       .catch((error) => {
+        setData([]);
         if (error.response?.status === 500) {
-          setData([]);
           Swal.fire({
             icon: 'warning',
             title: 'No children found ⚠️',

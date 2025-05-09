@@ -5,7 +5,6 @@ import { host } from '@/Components/utils/Host';
 import { showToast } from '@/Components/Toast/Toast';
 import { FaPlusSquare } from 'react-icons/fa';
 import React from 'react';
-import { FaArrowDownLong } from 'react-icons/fa6';
 import { FaMinus } from 'react-icons/fa';
 
 export default function Reservation() {
@@ -19,19 +18,21 @@ export default function Reservation() {
         withCredentials: true,
       })
       .then((response) => {
-        const reservations = response.data.data.rows;
+        const reservations = response?.data?.data?.rows;
+
         if (Array.isArray(reservations)) {
           setData(reservations);
           if (reservations.length === 0) {
-            showToast('No Reservations', 'warning');
+            showToast('No Reservations', 'info');
           }
         } else {
-          showToast('Unexpected response format', 'error');
+          setData([]);
+          showToast('No Reservations', 'info');
         }
       })
       .catch((error) => {
-        if (error.response.status === 500) {
-          setData([]);
+        setData([]);
+        if (error.response?.status === 500) {
           showToast('No Reservations', 'warning');
         } else {
           showToast(`${error.message}`, 'error');
