@@ -16,6 +16,17 @@ export default function AddVaccines() {
   const router = useRouter();
   const submitForm = (e) => {
     e.preventDefault();
+    if (
+      !vaccineName ||
+      !description ||
+      !minAge ||
+      !maxAge ||
+      !doses ||
+      !mandatory
+    ) {
+      showToast(`Please completed The Data`, 'warning');
+      return;
+    }
     const params = {
       vaccine_name: vaccineName,
       description: description,
@@ -33,7 +44,7 @@ export default function AddVaccines() {
       })
       .then((response) => {
         showToast(`Added Viccine Successfully`, 'success');
-        router.push("/adminDashboard")
+        router.push('/adminDashboard');
       })
       .catch((error) => {
         showToast(`${error.message}`, 'error');

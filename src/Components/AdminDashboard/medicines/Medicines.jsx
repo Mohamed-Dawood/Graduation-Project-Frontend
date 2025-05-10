@@ -48,7 +48,7 @@ export default function Medicines() {
   return (
     <div className="medicineDashboard">
       <div className="container">
-        <Link href={'/'}>
+        <Link href={'/adminDashboard/addMedicine'}>
           <AddInfoBtn text="New Medicine" />
         </Link>
         {data.map((card) => {

@@ -54,7 +54,7 @@ export default function ArticlesDashboard() {
   return (
     <div className="articlesDashboard">
       <div className="container">
-        <Link href="/">
+        <Link href="/adminDashboard/addArticles">
           <AddInfoBtn text="New Article" />
         </Link>
         {data.map((card) => {
