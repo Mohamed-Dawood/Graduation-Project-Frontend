@@ -36,6 +36,9 @@ export default function Navbar() {
               <Link href={'/'}>Home</Link>
             </li>
             <li>
+              <Link href={'/adminDashboard'}>Admin Dashboard</Link>
+            </li>
+            <li>
               <Link href={'/'}>Favorite items</Link>
             </li>
             <li>
