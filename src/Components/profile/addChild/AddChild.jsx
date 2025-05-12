@@ -147,7 +147,7 @@ export default function AddChild() {
                   <br />
                   <input
                     value={weight}
-                    type="text"
+                    type="number"
                     placeholder="Weight"
                     onChange={(e) => setWeight(e.target.value)}
                     required
@@ -158,7 +158,7 @@ export default function AddChild() {
                   <br />
                   <input
                     value={height}
-                    type="text"
+                    type="number"
                     placeholder="Height"
                     onChange={(e) => setHeight(e.target.value)}
                     required

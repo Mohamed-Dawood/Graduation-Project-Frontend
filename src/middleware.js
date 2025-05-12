@@ -1,7 +1,8 @@
+//Middleware
 import { NextResponse } from 'next/server';
 export function middleware(request) {
   const { pathname } = request.nextUrl;
-  const role = request.cookies.get('role').value;
+  const role = request.cookies.get('role')?.value;
   if (pathname.startsWith('/adminDashboard')) {
     if (role === 'Admin') {
       return NextResponse.next();

@@ -52,7 +52,7 @@ export default function DoctorsAdmin() {
         withCredentials: true,
       })
       .then((response) => {
-        showToast(`You Deleted Doctor Successfuly`, 'success');
+        showToast(`You Deleted Doctor Successfully`, 'success');
         getAllDoctors();
       })
       .catch((error) => {
@@ -123,11 +123,16 @@ export default function DoctorsAdmin() {
                             Update
                           </button>
                         </Link>
-                        <button
-                          style={{ color: '#fff', backgroundColor: '#ffc107' }}
-                        >
-                          Appointment
-                        </button>
+                        <Link href={`/adminDashboard/appoinmentDoctor/${card.user_id}`}>
+                          <button
+                            style={{
+                              color: '#fff',
+                              backgroundColor: '#ffc107',
+                            }}
+                          >
+                            Appointment
+                          </button>
+                        </Link>
                       </div>
                       <div>
                         <button

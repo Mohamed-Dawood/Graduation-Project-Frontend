@@ -52,6 +52,7 @@ export default function Vaccine() {
       router.push('/signin');
     }
   }, []);
+  // Button Basic and addition
   useEffect(() => {
     setFilterData(data.filter((item) => item.is_mandatory === activeTab));
   }, [activeTab, data]);

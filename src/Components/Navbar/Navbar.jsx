@@ -11,6 +11,7 @@ import { TbVaccine } from 'react-icons/tb';
 import { CgProfile } from 'react-icons/cg';
 import { CiSaveDown2 } from 'react-icons/ci';
 import { CiHeart } from 'react-icons/ci';
+import { RiAdminFill } from "react-icons/ri";
 import RouteLink from '../RouteLink/RouteLink';
 export default function Navbar() {
   const menuMobile = () => {
@@ -56,11 +57,11 @@ export default function Navbar() {
             <li>
               <Link href={'/profile'}>Profile</Link>
             </li>
-            <li className="bell">
+            {/* <li className="bell">
               <Link href={'/'}>
                 <CiBellOn />
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
@@ -70,6 +71,12 @@ export default function Navbar() {
             <Link href={'/'}>
               <IoHome />
               Home
+            </Link>
+          </li>
+          <li>
+            <Link href={'/adminDashboard'}>
+              <RiAdminFill />
+              Admin Dashboard
             </Link>
           </li>
           <li>

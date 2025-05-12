@@ -13,6 +13,7 @@ export default function ChildDosesByChildId() {
   const params = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  //Doses of child
   useEffect(() => {
     setLoading(true);
     axios

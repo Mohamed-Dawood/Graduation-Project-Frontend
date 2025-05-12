@@ -11,7 +11,7 @@ import PageTitle from '@/Components/PageTitle/PageTitle';
 
 export default function Children(props) {
   const [data, setData] = useState([]);
-
+  // get my children
   function getChildren() {
     axios
       .get(`${host}/child/myChildren`, {

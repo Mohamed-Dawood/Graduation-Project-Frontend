@@ -20,6 +20,7 @@ export default function Banner({ host }) {
   const router = useRouter();
   //============== Rate =======================
   const rate = [4.2, 3.3, 2.1, 3.4, 2.8, 4.7, 3.4, 2.7, 3.9, 2.2];
+  //Show Doctor
   useEffect(() => {
     setLoading(true);
     let token = localStorage.getItem('Token');

@@ -10,7 +10,7 @@ import { FaMinus } from 'react-icons/fa';
 export default function Reservation() {
   const [data, setData] = useState([]);
   const [openRow, setOpenRow] = useState(null);
-
+  // Show Reservation
   useEffect(() => {
     axios
       .get(`${host}/reservation/myReservations`, {

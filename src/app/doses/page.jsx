@@ -39,8 +39,9 @@ export default function Doses() {
       setLoading(false);
     }
   };
-
+  // Search
   const handleSearch = () => {
+    //search term is a state
     if (!searchTerm) {
       fetchDoses(); 
       return;

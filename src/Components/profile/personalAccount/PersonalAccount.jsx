@@ -24,6 +24,7 @@ export default function PersonalAccount() {
 
   // Start get data By Id
   function getDataById() {
+    //get id user from local storage
     const Id = localStorage.getItem('Id');
     let token = localStorage.getItem('Token');
     if (!token) {

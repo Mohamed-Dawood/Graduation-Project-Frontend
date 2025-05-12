@@ -70,7 +70,7 @@ export default function Profile() {
                   <FaAngleRight className="arrow" />
                 </div>
               </li>
-              <li
+              {/* <li
                 onClick={() => setData('notification')}
                 className={data === 'notification' ? 'active' : ''}
               >
@@ -81,7 +81,7 @@ export default function Profile() {
                 <div>
                   <FaAngleRight className="arrow" />
                 </div>
-              </li>
+              </li> */}
               <li
                 onClick={() => setData('addChild')}
                 className={data === 'addChild' ? 'active' : ''}
