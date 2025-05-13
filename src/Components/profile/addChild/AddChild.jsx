@@ -14,6 +14,34 @@ export default function AddChild() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
 
+  const validateInputs = () => {
+    // Check if inputs are numbers
+    if (isNaN(weight) || isNaN(height)) {
+      showToast('Please enter valid numbers for weight and height', 'warning');
+      return false;
+    }
+
+    // Convert to numbers for validation
+    const weightNum = Number(weight);
+    const heightNum = Number(height);
+
+    // Validate ranges
+    if (
+      weightNum <= 0 ||
+      heightNum <= 0 ||
+      weightNum > 200 ||
+      heightNum > 250
+    ) {
+      showToast(
+        'Please enter valid values: Weight (1-200 kg) and Height (1-250 cm)',
+        'warning'
+      );
+      return false;
+    }
+
+    return true;
+  };
+
   const handleAddChild = (e) => {
     e.preventDefault();
 
@@ -29,6 +57,11 @@ export default function AddChild() {
       return;
     }
 
+    // Run validation layer
+    if (!validateInputs()) {
+      return;
+    }
+
     const params = {
       user_id: 2,
       first_name: first_name,
@@ -36,8 +69,8 @@ export default function AddChild() {
       gender:
         gender.charAt(0).toUpperCase() + gender.slice(1).toLocaleLowerCase(),
       date_of_birth: date_of_birth,
-      weight: weight,
-      height: height,
+      weight: Number(weight),
+      height: Number(height),
     };
 
     console.log(params);
@@ -49,11 +82,7 @@ export default function AddChild() {
         withCredentials: true,
       })
       .then((response) => {
-        Swal.fire({
-          title: 'Child added successfully ✅.',
-          icon: 'success',
-          draggable: true,
-        });
+        showToast('Child added successfully', 'success');
         setFirst_name('');
         setLast_name('');
         setGender('');
@@ -62,11 +91,7 @@ export default function AddChild() {
         setHeight('');
       })
       .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: `${error.response?.data?.msg || 'Something went wrong'}`,
-        });
+        showToast(error.response?.data?.msg || 'Something went wrong', 'error');
       });
   };
 
@@ -148,8 +173,16 @@ export default function AddChild() {
                   <input
                     value={weight}
                     type="number"
-                    placeholder="Weight"
-                    onChange={(e) => setWeight(e.target.value)}
+                    min="1"
+                    max="200"
+                    step="0.1"
+                    placeholder="Weight (kg)"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === '' || /^\d*\.?\d*$/.test(value)) {
+                        setWeight(value);
+                      }
+                    }}
                     required
                   />
                 </div>
@@ -159,8 +192,16 @@ export default function AddChild() {
                   <input
                     value={height}
                     type="number"
-                    placeholder="Height"
-                    onChange={(e) => setHeight(e.target.value)}
+                    min="1"
+                    max="250"
+                    step="0.1"
+                    placeholder="Height (cm)"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === '' || /^\d*\.?\d*$/.test(value)) {
+                        setHeight(value);
+                      }
+                    }}
                     required
                   />
                 </div>

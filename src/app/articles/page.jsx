@@ -5,13 +5,14 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart } from 'react-icons/fa';
-import Swal from 'sweetalert2';
 import PageTitle from '@/Components/PageTitle/PageTitle';
 import Spinner from '@/Components/Spinner/Spinner';
 import InputSearch from '@/Components/InputSearch/InputSearch';
 import { host } from '@/Components/utils/Host';
 import { useRouter } from 'next/navigation';
+import { showToast } from '@/Components/Toast/Toast';
 import articleImage from '../../assets/images/articles/articles.avif';
+
 export default function Articles() {
   const router = useRouter();
   const [data, setData] = useState([]);
@@ -45,11 +46,7 @@ export default function Articles() {
       setData(rows);
       setFilteredData(rows.filter((item) => item.isFeatured === activeTab));
     } catch (err) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: err.message,
-      });
+      showToast('No articles found. Please try again later.', 'error');
     } finally {
       setLoading(false);
     }
@@ -100,11 +97,7 @@ export default function Articles() {
       setData(filtered);
       setFilteredData(filtered);
     } catch (err) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: err.message,
-      });
+      showToast('No articles found matching your search criteria.', 'info');
     } finally {
       setLoading(false);
     }
