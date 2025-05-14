@@ -11,9 +11,18 @@ import { TbVaccine } from 'react-icons/tb';
 import { CgProfile } from 'react-icons/cg';
 import { CiSaveDown2 } from 'react-icons/ci';
 import { CiHeart } from 'react-icons/ci';
-import { RiAdminFill } from "react-icons/ri";
+import { RiAdminFill } from 'react-icons/ri';
 import RouteLink from '../RouteLink/RouteLink';
+import { useEffect, useState } from 'react';
+
 export default function Navbar() {
+  const [userRole, setUserRole] = useState('');
+
+  useEffect(() => {
+    const role = localStorage.getItem('Role');
+    setUserRole(role);
+  }, []);
+
   const menuMobile = () => {
     const menuMobile = document.getElementById('mobile-menu');
     // console.log(menuMobile)
@@ -36,12 +45,14 @@ export default function Navbar() {
             <li>
               <Link href={'/'}>Home</Link>
             </li>
-            <li>
-              <Link href={'/adminDashboard'}>Admin Dashboard</Link>
-            </li>
-            <li>
+            {userRole === 'Admin' && (
+              <li>
+                <Link href={'/adminDashboard'}>Admin Dashboard</Link>
+              </li>
+            )}
+            {/* <li>
               <Link href={'/'}>Favorite items</Link>
-            </li>
+            </li> */}
             <li>
               <Link href={'/doctors'}>Doctors</Link>
             </li>
@@ -73,18 +84,20 @@ export default function Navbar() {
               Home
             </Link>
           </li>
-          <li>
-            <Link href={'/adminDashboard'}>
-              <RiAdminFill />
-              Admin Dashboard
-            </Link>
-          </li>
-          <li>
+          {userRole === 'Admin' && (
+            <li>
+              <Link href={'/adminDashboard'}>
+                <RiAdminFill />
+                Admin Dashboard
+              </Link>
+            </li>
+          )}
+          {/* <li>
             <Link href={'/'}>
               <CiHeart />
               Favorite items
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href={'/doctors'}>
               <FaUserDoctor />
