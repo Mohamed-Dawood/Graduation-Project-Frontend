@@ -39,7 +39,7 @@ function page() {
         router.push('/');
         localStorage.setItem('Token', Token);
         // localStorage.setItem('Role', user.role);
-        localStorage.setItem('Role', Admin);
+        localStorage.setItem('Role', 'Admin');
         localStorage.setItem('Id', user.user_id);
         localStorage.setItem('Name', user.first_name);
         console.log('Name', user.first_name);
