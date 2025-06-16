@@ -14,14 +14,34 @@ import { CiHeart } from 'react-icons/ci';
 import { RiAdminFill } from 'react-icons/ri';
 import RouteLink from '../RouteLink/RouteLink';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [userRole, setUserRole] = useState('');
+  const [userName, setUserName] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const role = localStorage.getItem('Role');
+    const name = localStorage.getItem('Name');
+    const token = localStorage.getItem('Token');
+    const userId = localStorage.getItem('Id');
+
     setUserRole(role);
+    setUserName(name);
+    setIsLoggedIn(!!(token && userId));
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('Token');
+    localStorage.removeItem('Id');
+    localStorage.removeItem('Role');
+    localStorage.removeItem('Name');
+    setIsLoggedIn(false);
+    setUserRole('');
+    router.push('/');
+  };
 
   const menuMobile = () => {
     const menuMobile = document.getElementById('mobile-menu');
@@ -68,6 +88,16 @@ export default function Navbar() {
             <li>
               <Link href={'/profile'}>Profile</Link>
             </li>
+            {isLoggedIn && (
+              <>
+                <li className="user-name">Welcome, {userName}</li>
+                <li>
+                  <button onClick={handleLogout} className="logout-btn">
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
             {/* <li className="bell">
               <Link href={'/'}>
                 <CiBellOn />
@@ -128,6 +158,16 @@ export default function Navbar() {
               Profile
             </Link>
           </li>
+          {isLoggedIn && (
+            <>
+              <li className="user-name">Welcome, {userName}</li>
+              <li>
+                <button onClick={handleLogout} className="logout-btn">
+                  Logout
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

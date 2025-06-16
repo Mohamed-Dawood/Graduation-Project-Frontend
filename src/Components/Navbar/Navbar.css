@@ -42,7 +42,7 @@ nav .container a img {
   left: 0;
 }
 #uls-mobile ul li {
-  width: 100%;
+  text-align: center;
 }
 #uls-mobile ul li a {
   display: block;
@@ -72,9 +72,13 @@ nav .container #uls ul,
     display: none;
   }
 }
+nav .container #uls ul li {
+  text-align: center;
+}
 nav .container #uls ul li a,
 #uls-mobile ul li a {
-  margin-left: 24px;
+  margin-left: 16px;
+  line-height: 1px;
   font-size: 24px;
   font-weight: 400;
   color: var(--main-color);
@@ -100,4 +104,38 @@ nav .container #uls ul li a:hover,
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+.user-name {
+  color: var(--main-color);
+  font-weight: 500;
+  margin-left: 24px;
+}
+
+.logout-btn {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 24px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: var(--second-color);
+}
+
+@media (max-width: 1200px) {
+  .user-name {
+    margin-left: 10px;
+  }
+
+  .logout-btn {
+    margin-left: 10px;
+    width: 100%;
+    margin: 10px;
+  }
 }

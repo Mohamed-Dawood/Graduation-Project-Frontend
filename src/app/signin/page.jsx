@@ -40,6 +40,8 @@ function page() {
         localStorage.setItem('Token', Token);
         localStorage.setItem('Role', user.role);
         localStorage.setItem('Id', user.user_id);
+        localStorage.setItem('Name', user.first_name);
+        console.log('Name', user.first_name);
         document.cookie = `role=${user.role};path=/`;
       } else {
         showToast(msg || 'Login failed. Please try again.', 'error');
