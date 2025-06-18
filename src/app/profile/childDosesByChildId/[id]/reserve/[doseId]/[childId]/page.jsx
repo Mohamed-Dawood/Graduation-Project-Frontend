@@ -32,6 +32,8 @@ const Reserve = () => {
       })
       .catch((error) => {
         showToast(`${error.message}`, 'error');
+        alert(error);
+        showToast(`hello`, 'error');
       });
   }
   const handleDoctorChange = (e) => {
@@ -85,7 +87,7 @@ const Reserve = () => {
       })
       .then((response) => {
         showToast('Action completed successfully!', 'success');
-        router.push("/profile")
+        router.push('/profile');
       })
       .catch((error) => {
         showToast(`${error.message}`, 'error');

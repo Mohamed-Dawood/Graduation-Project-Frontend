@@ -5,6 +5,8 @@ import ToastContainerWrapper from '@/Components/Toast/Toast';
 import { usePathname } from 'next/navigation';
 import Navbar from '@/Components/Navbar/Navbar';
 import Footer from '@/Components/Footer/Footer';
+import AIChat from '@/Components/AIChat/AIChat';
+
 const cairoFont = Cairo({
   variable: '--font-Cairo',
   subsets: ['latin'],
@@ -30,6 +32,7 @@ export default function Layout({ children }) {
         {!shouldHideComponents && <Navbar />}
         {children}
         {!shouldHideComponents && <Footer />}
+        {!shouldHideComponents && <AIChat />}
       </body>
     </html>
   );
